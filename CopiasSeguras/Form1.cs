@@ -16,5 +16,20 @@ namespace CopiasSeguras
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //registro
+
+            panelInicio.Hide();
+            panelRegistro.Show();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panelRegistro.Hide();
+            panelInicio.Show();
+        }
     }
 }

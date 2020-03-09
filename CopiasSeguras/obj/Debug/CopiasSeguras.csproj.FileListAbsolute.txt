@@ -1,0 +1,9 @@
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\bin\Debug\CopiasSeguras.exe.config
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\bin\Debug\CopiasSeguras.exe
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\bin\Debug\CopiasSeguras.pdb
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.csprojAssemblyReference.cache
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.Form1.resources
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.Properties.Resources.resources
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.GenerateResource.cache
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.exe
+C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
