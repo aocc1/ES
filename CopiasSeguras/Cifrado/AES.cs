@@ -38,7 +38,7 @@ namespace CopiasSeguras.Cifrado
         */
 
         //static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
-        static void EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        public void EncryptStringToBytes_Aes(byte[] plainText, byte[] Key, byte[] IV)
         {
             // Check arguments.
             if (plainText == null || plainText.Length <= 0)
