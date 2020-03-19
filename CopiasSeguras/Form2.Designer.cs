@@ -30,20 +30,20 @@
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Cifrar = new System.Windows.Forms.Label();
-            this.SeleccionaCifrado = new System.Windows.Forms.Label();
-            this.SelccionaArchivo = new System.Windows.Forms.Label();
+            this.cifra = new System.Windows.Forms.Button();
+            this.SlecArchivoButton = new System.Windows.Forms.Button();
             this.ArchivoaCifrar = new System.Windows.Forms.TextBox();
+            this.SelccionaArchivo = new System.Windows.Forms.Label();
+            this.SeleccionaCifrado = new System.Windows.Forms.Label();
+            this.Cifrar = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.descargar = new System.Windows.Forms.Button();
+            this.SelecDescButton = new System.Windows.Forms.Button();
             this.rutaDesc = new System.Windows.Forms.TextBox();
             this.RutaDescarga = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.ArchivoRecuperar = new System.Windows.Forms.Label();
             this.RecuperarArchivo = new System.Windows.Forms.Label();
-            this.SlecArchivoButton = new System.Windows.Forms.Button();
-            this.SelecDescButton = new System.Windows.Forms.Button();
-            this.descargar = new System.Windows.Forms.Button();
-            this.cifra = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -70,23 +70,32 @@
             this.panel1.Size = new System.Drawing.Size(353, 403);
             this.panel1.TabIndex = 1;
             // 
-            // Cifrar
+            // cifra
             // 
-            this.Cifrar.AutoSize = true;
-            this.Cifrar.Location = new System.Drawing.Point(3, 17);
-            this.Cifrar.Name = "Cifrar";
-            this.Cifrar.Size = new System.Drawing.Size(31, 13);
-            this.Cifrar.TabIndex = 0;
-            this.Cifrar.Text = "Cifrar";
+            this.cifra.Location = new System.Drawing.Point(91, 196);
+            this.cifra.Name = "cifra";
+            this.cifra.Size = new System.Drawing.Size(75, 23);
+            this.cifra.TabIndex = 5;
+            this.cifra.Text = "Cifrar";
+            this.cifra.UseVisualStyleBackColor = true;
+            this.cifra.Click += new System.EventHandler(this.cifra_Click);
             // 
-            // SeleccionaCifrado
+            // SlecArchivoButton
             // 
-            this.SeleccionaCifrado.AutoSize = true;
-            this.SeleccionaCifrado.Location = new System.Drawing.Point(6, 68);
-            this.SeleccionaCifrado.Name = "SeleccionaCifrado";
-            this.SeleccionaCifrado.Size = new System.Drawing.Size(127, 13);
-            this.SeleccionaCifrado.TabIndex = 1;
-            this.SeleccionaCifrado.Text = "Selecciona el tipo Cifrado";
+            this.SlecArchivoButton.Location = new System.Drawing.Point(9, 196);
+            this.SlecArchivoButton.Name = "SlecArchivoButton";
+            this.SlecArchivoButton.Size = new System.Drawing.Size(75, 23);
+            this.SlecArchivoButton.TabIndex = 4;
+            this.SlecArchivoButton.Text = "Explorar Carpetas";
+            this.SlecArchivoButton.UseVisualStyleBackColor = true;
+            this.SlecArchivoButton.Click += new System.EventHandler(this.SlecArchivoButton_Click);
+            // 
+            // ArchivoaCifrar
+            // 
+            this.ArchivoaCifrar.Location = new System.Drawing.Point(9, 169);
+            this.ArchivoaCifrar.Name = "ArchivoaCifrar";
+            this.ArchivoaCifrar.Size = new System.Drawing.Size(306, 20);
+            this.ArchivoaCifrar.TabIndex = 3;
             // 
             // SelccionaArchivo
             // 
@@ -97,12 +106,23 @@
             this.SelccionaArchivo.TabIndex = 2;
             this.SelccionaArchivo.Text = "Selcciona el Archivo";
             // 
-            // ArchivoaCifrar
+            // SeleccionaCifrado
             // 
-            this.ArchivoaCifrar.Location = new System.Drawing.Point(9, 169);
-            this.ArchivoaCifrar.Name = "ArchivoaCifrar";
-            this.ArchivoaCifrar.Size = new System.Drawing.Size(306, 20);
-            this.ArchivoaCifrar.TabIndex = 3;
+            this.SeleccionaCifrado.AutoSize = true;
+            this.SeleccionaCifrado.Location = new System.Drawing.Point(6, 68);
+            this.SeleccionaCifrado.Name = "SeleccionaCifrado";
+            this.SeleccionaCifrado.Size = new System.Drawing.Size(127, 13);
+            this.SeleccionaCifrado.TabIndex = 1;
+            this.SeleccionaCifrado.Text = "Selecciona el tipo Cifrado";
+            // 
+            // Cifrar
+            // 
+            this.Cifrar.AutoSize = true;
+            this.Cifrar.Location = new System.Drawing.Point(3, 17);
+            this.Cifrar.Name = "Cifrar";
+            this.Cifrar.Size = new System.Drawing.Size(31, 13);
+            this.Cifrar.TabIndex = 0;
+            this.Cifrar.Text = "Cifrar";
             // 
             // panel2
             // 
@@ -117,6 +137,25 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(353, 403);
             this.panel2.TabIndex = 4;
+            // 
+            // descargar
+            // 
+            this.descargar.Location = new System.Drawing.Point(90, 191);
+            this.descargar.Name = "descargar";
+            this.descargar.Size = new System.Drawing.Size(75, 23);
+            this.descargar.TabIndex = 5;
+            this.descargar.Text = "Descargar";
+            this.descargar.UseVisualStyleBackColor = true;
+            // 
+            // SelecDescButton
+            // 
+            this.SelecDescButton.Location = new System.Drawing.Point(9, 191);
+            this.SelecDescButton.Name = "SelecDescButton";
+            this.SelecDescButton.Size = new System.Drawing.Size(75, 23);
+            this.SelecDescButton.TabIndex = 4;
+            this.SelecDescButton.Text = "Explorar Carpetas";
+            this.SelecDescButton.UseVisualStyleBackColor = true;
+            this.SelecDescButton.Click += new System.EventHandler(this.SelecDescButton_Click);
             // 
             // rutaDesc
             // 
@@ -159,44 +198,6 @@
             this.RecuperarArchivo.Size = new System.Drawing.Size(96, 13);
             this.RecuperarArchivo.TabIndex = 0;
             this.RecuperarArchivo.Text = "Recuperar Archivo";
-            // 
-            // SlecArchivoButton
-            // 
-            this.SlecArchivoButton.Location = new System.Drawing.Point(9, 196);
-            this.SlecArchivoButton.Name = "SlecArchivoButton";
-            this.SlecArchivoButton.Size = new System.Drawing.Size(75, 23);
-            this.SlecArchivoButton.TabIndex = 4;
-            this.SlecArchivoButton.Text = "Explorar Carpetas";
-            this.SlecArchivoButton.UseVisualStyleBackColor = true;
-            this.SlecArchivoButton.Click += new System.EventHandler(this.SlecArchivoButton_Click);
-            // 
-            // SelecDescButton
-            // 
-            this.SelecDescButton.Location = new System.Drawing.Point(9, 191);
-            this.SelecDescButton.Name = "SelecDescButton";
-            this.SelecDescButton.Size = new System.Drawing.Size(75, 23);
-            this.SelecDescButton.TabIndex = 4;
-            this.SelecDescButton.Text = "Explorar Carpetas";
-            this.SelecDescButton.UseVisualStyleBackColor = true;
-            this.SelecDescButton.Click += new System.EventHandler(this.SelecDescButton_Click);
-            // 
-            // descargar
-            // 
-            this.descargar.Location = new System.Drawing.Point(90, 191);
-            this.descargar.Name = "descargar";
-            this.descargar.Size = new System.Drawing.Size(75, 23);
-            this.descargar.TabIndex = 5;
-            this.descargar.Text = "Descargar";
-            this.descargar.UseVisualStyleBackColor = true;
-            // 
-            // cifra
-            // 
-            this.cifra.Location = new System.Drawing.Point(91, 196);
-            this.cifra.Name = "cifra";
-            this.cifra.Size = new System.Drawing.Size(75, 23);
-            this.cifra.TabIndex = 5;
-            this.cifra.Text = "Cifrar";
-            this.cifra.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 

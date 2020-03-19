@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.IO;
+using System.Security.Cryptography;
+using CopiasSeguras.Cifrado;
 
 namespace CopiasSeguras
 {
@@ -24,6 +28,8 @@ namespace CopiasSeguras
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 ArchivoaCifrar.Text = ofd.FileName;
 
+
+
         }
 
         private void SelecDescButton_Click(object sender, EventArgs e)
@@ -33,6 +39,16 @@ namespace CopiasSeguras
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 rutaDesc.Text = fbd.SelectedPath;
 
+        }
+
+        private void cifra_Click(object sender, EventArgs e)
+        {
+            byte[] archivoACifrar = File.ReadAllBytes(rutaDesc.Text);
+
+            AES cifrador = new AES();
+            Aes myAes = Aes.Create() ;
+
+           cifrador.EncryptStringToBytes_Aes(archivoACifrar , myAes.Key , myAes.IV);
         }
     }
 }
