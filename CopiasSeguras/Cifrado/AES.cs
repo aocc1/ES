@@ -37,7 +37,8 @@ namespace CopiasSeguras.Cifrado
         }
         */
 
-        static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        //static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        static void EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {
             // Check arguments.
             if (plainText == null || plainText.Length <= 0)
@@ -74,10 +75,11 @@ namespace CopiasSeguras.Cifrado
             }
 
             // Return the encrypted bytes from the memory stream.
-            return encrypted;
+            //return encrypted;
         }
 
-        static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        //static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        static void DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
             // Check arguments.
             if (cipherText == null || cipherText.Length <= 0)
@@ -117,7 +119,7 @@ namespace CopiasSeguras.Cifrado
                 }
             }
 
-            return plaintext;
+            //return plaintext;
         }
     }
 }
