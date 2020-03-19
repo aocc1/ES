@@ -10,6 +10,7 @@ namespace CopiasSeguras.Cifrado
 {
     class AES
     {
+        /*
         public static void Main()
         {
             //string original = "Here is some data to encrypt!";
@@ -34,6 +35,8 @@ namespace CopiasSeguras.Cifrado
                 Console.WriteLine("Round Trip: {0}", roundtrip);
             }
         }
+        */
+
         static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {
             // Check arguments.
