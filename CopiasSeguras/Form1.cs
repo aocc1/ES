@@ -31,13 +31,5 @@ namespace CopiasSeguras
             panelRegistro.Hide();
             panelInicio.Show();
         }
-
-        private void iniciar_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form2 f2 = new Form2();
-            f2.ShowDialog();
-            this.Close();
-        }
     }
 }
