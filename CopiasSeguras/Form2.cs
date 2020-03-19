@@ -32,6 +32,7 @@ namespace CopiasSeguras
            
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 rutaDesc.Text = fbd.SelectedPath;
+
         }
     }
 }
