@@ -38,6 +38,7 @@ namespace CopiasSeguras
             Form2 f2 = new Form2();
             f2.ShowDialog();
             this.Close();
+
         }
     }
 }
