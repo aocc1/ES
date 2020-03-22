@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading.Tasks;
 using System.IO;
 using System.Security.Cryptography;
 using CopiasSeguras.Cifrado;
@@ -57,6 +56,9 @@ namespace CopiasSeguras
                 aes.Padding = PaddingMode.PKCS7;
 
                 byte[] encriptado = AES.AESCrypto("Encriptar", aes, archivoCifrar);
+
+                
+                Console.WriteLine(System.Text.Encoding.UTF8.GetString(AES.AESCrypto("Encriptar", aes, archivoCifrar)));
                 Console.WriteLine(encriptado);
             }
 

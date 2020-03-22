@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace CopiasSeguras
 {
@@ -26,15 +27,36 @@ namespace CopiasSeguras
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void registrar_Click(object sender, EventArgs e)
         {
-            panelRegistro.Hide();
-            panelInicio.Show();
+            
+            if (Equals(passReg1.Text, passReg2.Text))
+            {
+
+
+                panelRegistro.Hide();
+                panelInicio.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("La contraseña no coincide");
+            }
+            
         }
 
         private void iniciar_Click(object sender, EventArgs e)
         {
             this.Hide();
+
+            String pass = passInicio.Text;
+
+            SHA256 sha256 = SHA256.Create();
+
+            byte[] haseo = sha256.ComputeHash(Encoding.UTF8.GetBytes(pass));
+
+            //Console.WriteLine(System.Text.Encoding.UTF8.GetString(haseo));
+
             Form2 f2 = new Form2();
             f2.ShowDialog();
 
