@@ -43,12 +43,33 @@ namespace CopiasSeguras
 
         private void cifra_Click(object sender, EventArgs e)
         {
-            byte[] archivoACifrar = File.ReadAllBytes(rutaDesc.Text);
+            String path = ArchivoaCifrar.Text;
+            byte[] archivoCifrar = File.ReadAllBytes(path);
 
             AES cifrador = new AES();
-            Aes myAes = Aes.Create() ;
 
-           cifrador.EncryptStringToBytes_Aes(archivoACifrar , myAes.Key , myAes.IV);
+            using (var aes = new AesCryptoServiceProvider())
+            {
+                aes.GenerateIV();
+                aes.GenerateKey();
+
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
+
+                byte[] encriptado = AES.AESCrypto("Encriptar", aes, archivoCifrar);
+                Console.WriteLine(encriptado);
+            }
+
+
+            /*
+            AES cifrador = new AES();
+            using (Aes myAes = Aes.Create())
+            {
+                // Encrypt the string to an array of bytes.
+                cifrador.EncryptStringToBytes_Aes(archivoCifrar, myAes.Key, myAes.IV);
+
+            }
+            */
         }
     }
 }
