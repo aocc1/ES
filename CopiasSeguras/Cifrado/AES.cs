@@ -121,5 +121,27 @@ namespace CopiasSeguras.Cifrado
 
             //return plaintext;
         }
+
+        public static Byte[] AESCrypto(String modo, AesCryptoServiceProvider aes, byte[] archivo) {
+        
+            using (var memStream = new MemoryStream())
+            {
+                CryptoStream cryptoStream = null;
+
+                if (modo == "Encriptar")
+                    cryptoStream = new CryptoStream(memStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
+                else if (modo == "Desencriptar")
+                    cryptoStream = new CryptoStream(memStream, aes.CreateDecryptor(), CryptoStreamMode.Write);
+                if (cryptoStream == null)
+                    return null;
+
+                cryptoStream.Write(archivo, 0, archivo.Length);
+                cryptoStream.FlushFinalBlock();
+                return memStream.ToArray();
+
+            }
+            //return null;
+        }
+
     }
 }
