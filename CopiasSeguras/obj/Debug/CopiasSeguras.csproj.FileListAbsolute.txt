@@ -17,3 +17,13 @@ C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.Gene
 C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.exe
 C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
 C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Form2.resources
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe.config
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.pdb
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csprojAssemblyReference.cache
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Form1.resources
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Form2.resources
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Properties.Resources.resources
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.GenerateResource.cache
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.exe
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
