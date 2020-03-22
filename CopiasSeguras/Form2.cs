@@ -43,7 +43,9 @@ namespace CopiasSeguras
 
         private void cifra_Click(object sender, EventArgs e)
         {
-            byte[] archivoACifrar = File.ReadAllBytes(rutaDesc.Text);
+            Console.WriteLine(ArchivoaCifrar.Text);
+    
+            byte[] archivoACifrar = File.ReadAllBytes(ArchivoaCifrar.Text);
 
             AES cifrador = new AES();
             Aes myAes = Aes.Create() ;
