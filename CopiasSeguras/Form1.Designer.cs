@@ -50,7 +50,7 @@
             // usuarioInicio
             // 
             this.usuarioInicio.Location = new System.Drawing.Point(10, 48);
-            this.usuarioInicio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.usuarioInicio.Margin = new System.Windows.Forms.Padding(2);
             this.usuarioInicio.Name = "usuarioInicio";
             this.usuarioInicio.Size = new System.Drawing.Size(157, 20);
             this.usuarioInicio.TabIndex = 2;
@@ -69,7 +69,7 @@
             // passInicio
             // 
             this.passInicio.Location = new System.Drawing.Point(10, 100);
-            this.passInicio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passInicio.Margin = new System.Windows.Forms.Padding(2);
             this.passInicio.Name = "passInicio";
             this.passInicio.PasswordChar = '*';
             this.passInicio.Size = new System.Drawing.Size(157, 20);
@@ -89,7 +89,7 @@
             // iniciar
             // 
             this.iniciar.Location = new System.Drawing.Point(10, 136);
-            this.iniciar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iniciar.Margin = new System.Windows.Forms.Padding(2);
             this.iniciar.Name = "iniciar";
             this.iniciar.Size = new System.Drawing.Size(56, 19);
             this.iniciar.TabIndex = 6;
@@ -100,7 +100,7 @@
             // registro
             // 
             this.registro.Location = new System.Drawing.Point(10, 159);
-            this.registro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.registro.Margin = new System.Windows.Forms.Padding(2);
             this.registro.Name = "registro";
             this.registro.Size = new System.Drawing.Size(56, 19);
             this.registro.TabIndex = 7;
@@ -117,7 +117,7 @@
             this.panelInicio.Controls.Add(this.label1);
             this.panelInicio.Controls.Add(this.usuarioInicio);
             this.panelInicio.Location = new System.Drawing.Point(20, 60);
-            this.panelInicio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelInicio.Margin = new System.Windows.Forms.Padding(2);
             this.panelInicio.Name = "panelInicio";
             this.panelInicio.Size = new System.Drawing.Size(184, 194);
             this.panelInicio.TabIndex = 8;
@@ -132,7 +132,7 @@
             this.panelRegistro.Controls.Add(this.label4);
             this.panelRegistro.Controls.Add(this.label3);
             this.panelRegistro.Location = new System.Drawing.Point(20, 63);
-            this.panelRegistro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelRegistro.Margin = new System.Windows.Forms.Padding(2);
             this.panelRegistro.Name = "panelRegistro";
             this.panelRegistro.Size = new System.Drawing.Size(184, 201);
             this.panelRegistro.TabIndex = 9;
@@ -141,13 +141,13 @@
             // registrar
             // 
             this.registrar.Location = new System.Drawing.Point(10, 165);
-            this.registrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.registrar.Margin = new System.Windows.Forms.Padding(2);
             this.registrar.Name = "registrar";
             this.registrar.Size = new System.Drawing.Size(58, 19);
             this.registrar.TabIndex = 6;
             this.registrar.Text = "Registrar";
             this.registrar.UseVisualStyleBackColor = true;
-            this.registrar.Click += new System.EventHandler(this.button3_Click);
+            this.registrar.Click += new System.EventHandler(this.registrar_Click);
             // 
             // label5
             // 
@@ -162,23 +162,25 @@
             // passReg2
             // 
             this.passReg2.Location = new System.Drawing.Point(13, 142);
-            this.passReg2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passReg2.Margin = new System.Windows.Forms.Padding(2);
             this.passReg2.Name = "passReg2";
+            this.passReg2.PasswordChar = '*';
             this.passReg2.Size = new System.Drawing.Size(98, 20);
             this.passReg2.TabIndex = 4;
             // 
             // passReg1
             // 
             this.passReg1.Location = new System.Drawing.Point(13, 119);
-            this.passReg1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passReg1.Margin = new System.Windows.Forms.Padding(2);
             this.passReg1.Name = "passReg1";
+            this.passReg1.PasswordChar = '*';
             this.passReg1.Size = new System.Drawing.Size(98, 20);
             this.passReg1.TabIndex = 3;
             // 
             // nombreRegistro
             // 
             this.nombreRegistro.Location = new System.Drawing.Point(15, 43);
-            this.nombreRegistro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nombreRegistro.Margin = new System.Windows.Forms.Padding(2);
             this.nombreRegistro.Name = "nombreRegistro";
             this.nombreRegistro.Size = new System.Drawing.Size(98, 20);
             this.nombreRegistro.TabIndex = 2;
@@ -208,9 +210,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(226, 326);
-            this.Controls.Add(this.panelInicio);
             this.Controls.Add(this.panelRegistro);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.panelInicio);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Copias Seguras";
             this.panelInicio.ResumeLayout(false);
