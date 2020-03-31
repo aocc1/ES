@@ -66,20 +66,6 @@ namespace CopiasSeguras
             panelDescarga.Hide();
             panelDesencriptado.Show();
 
-            String path = ArchivoaDescifrar.Text;
-            byte[] ArchivoDescifrar = File.ReadAllBytes(path);
-
-            AES cifrador = new AES();
-
-            string jsonString;
-            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
-
-            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
-            byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
-
-            Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
-            Console.WriteLine(jsonString);
         }
 
         private void botonMenuDescarga_Click(object sender, EventArgs e)
@@ -98,9 +84,32 @@ namespace CopiasSeguras
             panelCifrado.Show();
         }
 
-        private void panelCifrado_Paint(object sender, PaintEventArgs e)
-        {
+ 
 
+        private void SlecArchicvoDesc_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                ArchivoaDescifrar.Text = ofd.FileName;
+           
+        }
+
+        private void botonDesencriptar_Click(object sender, EventArgs e)
+        {
+            String path = ArchivoaDescifrar.Text;
+            byte[] ArchivoDescifrar = File.ReadAllBytes(path);
+
+            AES cifrador = new AES();
+
+            string jsonString;
+            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
+
+            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
+
+            byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
+
+            Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
+            Console.WriteLine(jsonString);
         }
     }
 }
