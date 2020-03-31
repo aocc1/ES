@@ -45,43 +45,19 @@ namespace CopiasSeguras
         private void botonEncriptar_Click(object sender, EventArgs e)
         {
             String path = ArchivoaCifrar.Text;
-            byte[] archivoCifrar = File.ReadAllBytes(path);
+            byte[] ArchivoCifrar = File.ReadAllBytes(path);
 
             AES cifrador = new AES();
 
-            using (var aes = new AesCryptoServiceProvider())
-            {
-                aes.GenerateIV();
-                aes.GenerateKey();
+            string jsonString;
+            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoCifrar));
 
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.PKCS7;
+            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
 
-                
+            byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path);
 
-                string jsonString;
-                jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(archivoCifrar));
-
-                byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
-                byte[] encriptado = AES.AESCrypto("Encriptar", aes, serilizado);
-
-                byte[] desencriptado = AES.AESCrypto("Desencriptar", aes, encriptado);
-
-                Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
-                Console.WriteLine(jsonString);
-            }
-
-
-            /*
-            AES cifrador = new AES();
-            using (Aes myAes = Aes.Create())
-            {
-                // Encrypt the string to an array of bytes.
-                cifrador.EncryptStringToBytes_Aes(archivoCifrar, myAes.Key, myAes.IV);
-
-            }
-            */
+            Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
+            Console.WriteLine(jsonString);
         }
 
         private void botonMenuDescifra_Click(object sender, EventArgs e)
@@ -89,6 +65,21 @@ namespace CopiasSeguras
             panelCifrado.Hide();
             panelDescarga.Hide();
             panelDesencriptado.Show();
+
+            String path = ArchivoaDescifrar.Text;
+            byte[] ArchivoDescifrar = File.ReadAllBytes(path);
+
+            AES cifrador = new AES();
+
+            string jsonString;
+            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
+
+            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
+
+            byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
+
+            Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
+            Console.WriteLine(jsonString);
         }
 
         private void botonMenuDescarga_Click(object sender, EventArgs e)
@@ -105,6 +96,11 @@ namespace CopiasSeguras
             panelDescarga.Hide();
             panelDesencriptado.Hide();
             panelCifrado.Show();
+        }
+
+        private void panelCifrado_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

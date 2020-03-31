@@ -122,25 +122,34 @@ namespace CopiasSeguras.Cifrado
             //return plaintext;
         }
 
-        public static Byte[] AESCrypto(String modo, AesCryptoServiceProvider aes, byte[] archivo) {
-        
-            using (var memStream = new MemoryStream())
+        public static Byte[] AESCrypto(String modo, byte[] archivo, String path) {
+
+            using (var aes = new AesCryptoServiceProvider())
             {
-                CryptoStream cryptoStream = null;
+                aes.GenerateIV();
+                aes.GenerateKey();
 
-                if (modo == "Encriptar")
-                    cryptoStream = new CryptoStream(memStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
-                else if (modo == "Desencriptar")
-                    cryptoStream = new CryptoStream(memStream, aes.CreateDecryptor(), CryptoStreamMode.Write);
-                if (cryptoStream == null)
-                    return null;
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
 
-                cryptoStream.Write(archivo, 0, archivo.Length);
-                cryptoStream.FlushFinalBlock();
-                return memStream.ToArray();
+                using (var memStream = new MemoryStream())
+                {
+                    CryptoStream cryptoStream = null;
 
+                    if (modo == "Encriptar")
+                        cryptoStream = new CryptoStream(memStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
+                    else if (modo == "Desencriptar")
+                        cryptoStream = new CryptoStream(memStream, aes.CreateDecryptor(), CryptoStreamMode.Write);
+                    if (cryptoStream == null)
+                        return null;
+
+                    cryptoStream.Write(archivo, 0, archivo.Length);
+                    cryptoStream.FlushFinalBlock(); //Al desencriptar, error
+                    File.WriteAllBytes(path, memStream.ToArray());
+                    return memStream.ToArray();
+                }
             }
-            //return null;
+            return null;
         }
 
     }
