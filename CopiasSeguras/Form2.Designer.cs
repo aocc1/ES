@@ -31,7 +31,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelCifrado = new System.Windows.Forms.Panel();
             this.botonEncriptar = new System.Windows.Forms.Button();
-            this.SlecArchivoButton = new System.Windows.Forms.Button();
+            this.SlecArchivoCif = new System.Windows.Forms.Button();
             this.ArchivoaCifrar = new System.Windows.Forms.TextBox();
             this.SelccionaArchivo = new System.Windows.Forms.Label();
             this.SeleccionaCifrado = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.botonMenuDescarga = new System.Windows.Forms.Button();
             this.panelDesencriptado = new System.Windows.Forms.Panel();
             this.botonDesencriptar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SlecArchicvoDesc = new System.Windows.Forms.Button();
             this.ArchivoaDescifrar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -71,17 +71,16 @@
             // panelCifrado
             // 
             this.panelCifrado.Controls.Add(this.botonEncriptar);
-            this.panelCifrado.Controls.Add(this.SlecArchivoButton);
+            this.panelCifrado.Controls.Add(this.SlecArchivoCif);
             this.panelCifrado.Controls.Add(this.ArchivoaCifrar);
             this.panelCifrado.Controls.Add(this.SelccionaArchivo);
             this.panelCifrado.Controls.Add(this.comboBox1);
             this.panelCifrado.Controls.Add(this.SeleccionaCifrado);
             this.panelCifrado.Controls.Add(this.EncriptarTitulo);
-            this.panelCifrado.Location = new System.Drawing.Point(0, 0);
+            this.panelCifrado.Location = new System.Drawing.Point(491, 29);
             this.panelCifrado.Name = "panelCifrado";
             this.panelCifrado.Size = new System.Drawing.Size(356, 406);
             this.panelCifrado.TabIndex = 1;
-            this.panelCifrado.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCifrado_Paint);
             // 
             // botonEncriptar
             // 
@@ -93,15 +92,15 @@
             this.botonEncriptar.UseVisualStyleBackColor = true;
             this.botonEncriptar.Click += new System.EventHandler(this.botonEncriptar_Click);
             // 
-            // SlecArchivoButton
+            // SlecArchivoCif
             // 
-            this.SlecArchivoButton.Location = new System.Drawing.Point(9, 196);
-            this.SlecArchivoButton.Name = "SlecArchivoButton";
-            this.SlecArchivoButton.Size = new System.Drawing.Size(75, 23);
-            this.SlecArchivoButton.TabIndex = 4;
-            this.SlecArchivoButton.Text = "Explorar Carpetas";
-            this.SlecArchivoButton.UseVisualStyleBackColor = true;
-            this.SlecArchivoButton.Click += new System.EventHandler(this.SlecArchivoButton_Click);
+            this.SlecArchivoCif.Location = new System.Drawing.Point(9, 196);
+            this.SlecArchivoCif.Name = "SlecArchivoCif";
+            this.SlecArchivoCif.Size = new System.Drawing.Size(75, 23);
+            this.SlecArchivoCif.TabIndex = 4;
+            this.SlecArchivoCif.Text = "Explorar Carpetas";
+            this.SlecArchivoCif.UseVisualStyleBackColor = true;
+            this.SlecArchivoCif.Click += new System.EventHandler(this.SlecArchivoButton_Click);
             // 
             // ArchivoaCifrar
             // 
@@ -146,7 +145,7 @@
             this.panelDescarga.Controls.Add(this.comboBox2);
             this.panelDescarga.Controls.Add(this.ArchivoRecuperar);
             this.panelDescarga.Controls.Add(this.RecuperarArchivo);
-            this.panelDescarga.Location = new System.Drawing.Point(135, 26);
+            this.panelDescarga.Location = new System.Drawing.Point(853, 29);
             this.panelDescarga.Name = "panelDescarga";
             this.panelDescarga.Size = new System.Drawing.Size(356, 406);
             this.panelDescarga.TabIndex = 4;
@@ -246,17 +245,17 @@
             // panelDesencriptado
             // 
             this.panelDesencriptado.Controls.Add(this.botonDesencriptar);
-            this.panelDesencriptado.Controls.Add(this.button2);
+            this.panelDesencriptado.Controls.Add(this.SlecArchicvoDesc);
             this.panelDesencriptado.Controls.Add(this.ArchivoaDescifrar);
             this.panelDesencriptado.Controls.Add(this.label1);
             this.panelDesencriptado.Controls.Add(this.comboBox3);
             this.panelDesencriptado.Controls.Add(this.label2);
             this.panelDesencriptado.Controls.Add(this.DesencriptarTitulo);
-            this.panelDesencriptado.Controls.Add(this.panelCifrado);
-            this.panelDesencriptado.Location = new System.Drawing.Point(135, 26);
+            this.panelDesencriptado.Location = new System.Drawing.Point(129, 29);
             this.panelDesencriptado.Name = "panelDesencriptado";
             this.panelDesencriptado.Size = new System.Drawing.Size(356, 406);
             this.panelDesencriptado.TabIndex = 6;
+            this.panelDesencriptado.Visible = false;
             // 
             // botonDesencriptar
             // 
@@ -266,15 +265,17 @@
             this.botonDesencriptar.TabIndex = 5;
             this.botonDesencriptar.Text = "Desencriptar";
             this.botonDesencriptar.UseVisualStyleBackColor = true;
+            this.botonDesencriptar.Click += new System.EventHandler(this.botonDesencriptar_Click);
             // 
-            // button2
+            // SlecArchicvoDesc
             // 
-            this.button2.Location = new System.Drawing.Point(9, 196);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Explorar Carpetas";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SlecArchicvoDesc.Location = new System.Drawing.Point(9, 196);
+            this.SlecArchicvoDesc.Name = "SlecArchicvoDesc";
+            this.SlecArchicvoDesc.Size = new System.Drawing.Size(75, 23);
+            this.SlecArchicvoDesc.TabIndex = 4;
+            this.SlecArchicvoDesc.Text = "Explorar Carpetas";
+            this.SlecArchicvoDesc.UseVisualStyleBackColor = true;
+            this.SlecArchicvoDesc.Click += new System.EventHandler(this.SlecArchicvoDesc_Click);
             // 
             // ArchivoaDescifrar
             // 
@@ -322,12 +323,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 450);
+            this.ClientSize = new System.Drawing.Size(1228, 450);
+            this.Controls.Add(this.panelDesencriptado);
+            this.Controls.Add(this.panelCifrado);
+            this.Controls.Add(this.panelDescarga);
             this.Controls.Add(this.botonMenuDescarga);
             this.Controls.Add(this.botonMenuDescifra);
             this.Controls.Add(this.botonMenuCifra);
-            this.Controls.Add(this.panelDesencriptado);
-            this.Controls.Add(this.panelDescarga);
             this.Name = "Form2";
             this.Text = "Form2";
             this.panelCifrado.ResumeLayout(false);
@@ -354,7 +356,7 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label ArchivoRecuperar;
         private System.Windows.Forms.Label RecuperarArchivo;
-        private System.Windows.Forms.Button SlecArchivoButton;
+        private System.Windows.Forms.Button SlecArchivoCif;
         private System.Windows.Forms.Button SelecDescButton;
         private System.Windows.Forms.Button botonEncriptar;
         private System.Windows.Forms.Button descargar;
@@ -363,7 +365,7 @@
         private System.Windows.Forms.Button botonMenuDescarga;
         private System.Windows.Forms.Panel panelDesencriptado;
         private System.Windows.Forms.Button botonDesencriptar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SlecArchicvoDesc;
         private System.Windows.Forms.TextBox ArchivoaDescifrar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox3;
