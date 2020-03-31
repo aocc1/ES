@@ -50,7 +50,7 @@
             this.panelDesencriptado = new System.Windows.Forms.Panel();
             this.botonDesencriptar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ArchivoaDescifrar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,10 +77,11 @@
             this.panelCifrado.Controls.Add(this.comboBox1);
             this.panelCifrado.Controls.Add(this.SeleccionaCifrado);
             this.panelCifrado.Controls.Add(this.EncriptarTitulo);
-            this.panelCifrado.Location = new System.Drawing.Point(135, 26);
+            this.panelCifrado.Location = new System.Drawing.Point(0, 0);
             this.panelCifrado.Name = "panelCifrado";
             this.panelCifrado.Size = new System.Drawing.Size(356, 406);
             this.panelCifrado.TabIndex = 1;
+            this.panelCifrado.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCifrado_Paint);
             // 
             // botonEncriptar
             // 
@@ -246,11 +247,12 @@
             // 
             this.panelDesencriptado.Controls.Add(this.botonDesencriptar);
             this.panelDesencriptado.Controls.Add(this.button2);
-            this.panelDesencriptado.Controls.Add(this.textBox1);
+            this.panelDesencriptado.Controls.Add(this.ArchivoaDescifrar);
             this.panelDesencriptado.Controls.Add(this.label1);
             this.panelDesencriptado.Controls.Add(this.comboBox3);
             this.panelDesencriptado.Controls.Add(this.label2);
             this.panelDesencriptado.Controls.Add(this.DesencriptarTitulo);
+            this.panelDesencriptado.Controls.Add(this.panelCifrado);
             this.panelDesencriptado.Location = new System.Drawing.Point(135, 26);
             this.panelDesencriptado.Name = "panelDesencriptado";
             this.panelDesencriptado.Size = new System.Drawing.Size(356, 406);
@@ -274,12 +276,12 @@
             this.button2.Text = "Explorar Carpetas";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // ArchivoaDescifrar
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 169);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(306, 20);
-            this.textBox1.TabIndex = 3;
+            this.ArchivoaDescifrar.Location = new System.Drawing.Point(9, 169);
+            this.ArchivoaDescifrar.Name = "ArchivoaDescifrar";
+            this.ArchivoaDescifrar.Size = new System.Drawing.Size(306, 20);
+            this.ArchivoaDescifrar.TabIndex = 3;
             // 
             // label1
             // 
@@ -324,7 +326,6 @@
             this.Controls.Add(this.botonMenuDescarga);
             this.Controls.Add(this.botonMenuDescifra);
             this.Controls.Add(this.botonMenuCifra);
-            this.Controls.Add(this.panelCifrado);
             this.Controls.Add(this.panelDesencriptado);
             this.Controls.Add(this.panelDescarga);
             this.Name = "Form2";
@@ -363,7 +364,7 @@
         private System.Windows.Forms.Panel panelDesencriptado;
         private System.Windows.Forms.Button botonDesencriptar;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ArchivoaDescifrar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label2;
