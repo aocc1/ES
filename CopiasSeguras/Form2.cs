@@ -64,6 +64,7 @@ namespace CopiasSeguras
         {
             panelCifrado.Hide();
             panelDescarga.Hide();
+            panelSubir.Hide();
             panelDesencriptado.Show();
 
         }
@@ -72,6 +73,7 @@ namespace CopiasSeguras
         {
             panelCifrado.Hide();
             panelDesencriptado.Hide();
+            panelSubir.Hide();
             panelDescarga.Show();
             
         }
@@ -81,6 +83,7 @@ namespace CopiasSeguras
             
             panelDescarga.Hide();
             panelDesencriptado.Hide();
+            panelSubir.Hide();
             panelCifrado.Show();
         }
 
@@ -110,6 +113,15 @@ namespace CopiasSeguras
 
             Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
             Console.WriteLine(jsonString);
+        }
+
+        private void botonMenuSubir_Click(object sender, EventArgs e)
+        {
+            panelDescarga.Hide();
+            panelDesencriptado.Hide();
+            panelCifrado.Hide();
+            panelSubir.Show();
+
         }
     }
 }
