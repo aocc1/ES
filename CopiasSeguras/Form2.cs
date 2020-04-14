@@ -24,10 +24,10 @@ namespace CopiasSeguras
 
         private void SlecArchivoButton_Click(object sender, EventArgs e)
         {
-            //FolderBrowserDialog fbd = new FolderBrowserDialog(); esto es para carpetas
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                ArchivoaCifrar.Text = ofd.FileName;
+            FolderBrowserDialog fbd = new FolderBrowserDialog(); //esto es para carpetas
+            //OpenFileDialog ofd = new OpenFileDialog(); //Para archivos
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                ArchivoaCifrar.Text = fbd.SelectedPath;
 
 
 
@@ -38,15 +38,13 @@ namespace CopiasSeguras
             FolderBrowserDialog fbd = new FolderBrowserDialog(); 
            
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                rutaDesc.Text = fbd.SelectedPath;
+                ArchivoDescargar.Text = fbd.SelectedPath;
 
         }
 
         private void botonEncriptar_Click(object sender, EventArgs e)
         {
-            //String path = ArchivoaCifrar.Text;
-
-            String path = @"C:\Users\Sergio Yáñez Cánovas\Desktop\Nueva carpeta";
+            String path = ArchivoaCifrar.Text;
             zip zip = new zip();
             zip.Comprimir(path);
             path = path + ".zip";
@@ -59,7 +57,7 @@ namespace CopiasSeguras
             jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoCifrar));
 
             byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
+            
             byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path);
 
             Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
@@ -68,12 +66,7 @@ namespace CopiasSeguras
 
         private void botonDesencriptar_Click(object sender, EventArgs e)
         {
-            //String path = ArchivoaDescifrar.Text;
-
-            String pathZip = @"C:\Users\Sergio Yáñez Cánovas\Desktop\Nueva carpeta.zip";
-            zip zip = new zip();
-            zip.Descomprimir(pathZip);
-            string path = pathZip.Remove(pathZip.Length - 4, 4);
+            String path = ArchivoaDescifrar.Text;
 
             byte[] ArchivoDescifrar = File.ReadAllBytes(path);
 
@@ -83,11 +76,14 @@ namespace CopiasSeguras
             jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
 
             byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
+            
             byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
 
             Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
             Console.WriteLine(jsonString);
+            
+            zip zip = new zip();
+            zip.Descomprimir(path);
         }
 
         private void botonMenuDescifra_Click(object sender, EventArgs e)

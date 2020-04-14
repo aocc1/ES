@@ -39,7 +39,7 @@
             this.panelDescarga = new System.Windows.Forms.Panel();
             this.botonDescargar = new System.Windows.Forms.Button();
             this.SelecDescButton = new System.Windows.Forms.Button();
-            this.rutaDesc = new System.Windows.Forms.TextBox();
+            this.ArchivoDescargar = new System.Windows.Forms.TextBox();
             this.RutaDescarga = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.ArchivoRecuperar = new System.Windows.Forms.Label();
@@ -148,7 +148,7 @@
             // 
             this.panelDescarga.Controls.Add(this.botonDescargar);
             this.panelDescarga.Controls.Add(this.SelecDescButton);
-            this.panelDescarga.Controls.Add(this.rutaDesc);
+            this.panelDescarga.Controls.Add(this.ArchivoDescargar);
             this.panelDescarga.Controls.Add(this.RutaDescarga);
             this.panelDescarga.Controls.Add(this.comboBox2);
             this.panelDescarga.Controls.Add(this.ArchivoRecuperar);
@@ -178,12 +178,12 @@
             this.SelecDescButton.UseVisualStyleBackColor = true;
             this.SelecDescButton.Click += new System.EventHandler(this.SelecDescButton_Click);
             // 
-            // rutaDesc
+            // ArchivoDescargar
             // 
-            this.rutaDesc.Location = new System.Drawing.Point(9, 169);
-            this.rutaDesc.Name = "rutaDesc";
-            this.rutaDesc.Size = new System.Drawing.Size(306, 20);
-            this.rutaDesc.TabIndex = 3;
+            this.ArchivoDescargar.Location = new System.Drawing.Point(9, 169);
+            this.ArchivoDescargar.Name = "ArchivoDescargar";
+            this.ArchivoDescargar.Size = new System.Drawing.Size(306, 20);
+            this.ArchivoDescargar.TabIndex = 3;
             // 
             // RutaDescarga
             // 
@@ -226,7 +226,7 @@
             this.botonMenuCifra.Name = "botonMenuCifra";
             this.botonMenuCifra.Size = new System.Drawing.Size(75, 23);
             this.botonMenuCifra.TabIndex = 2;
-            this.botonMenuCifra.Text = "Encriptado";
+            this.botonMenuCifra.Text = "Encriptar";
             this.botonMenuCifra.UseVisualStyleBackColor = true;
             this.botonMenuCifra.Click += new System.EventHandler(this.botonMenuCifra_Click);
             // 
@@ -236,7 +236,7 @@
             this.botonMenuDescifra.Name = "botonMenuDescifra";
             this.botonMenuDescifra.Size = new System.Drawing.Size(75, 23);
             this.botonMenuDescifra.TabIndex = 3;
-            this.botonMenuDescifra.Text = "Desencriptado";
+            this.botonMenuDescifra.Text = "Desencriptar";
             this.botonMenuDescifra.UseVisualStyleBackColor = true;
             this.botonMenuDescifra.Click += new System.EventHandler(this.botonMenuDescifra_Click);
             // 
@@ -429,7 +429,7 @@
         private System.Windows.Forms.Label EncriptarTitulo;
         private System.Windows.Forms.TextBox ArchivoaCifrar;
         private System.Windows.Forms.Panel panelDescarga;
-        private System.Windows.Forms.TextBox rutaDesc;
+        private System.Windows.Forms.TextBox ArchivoDescargar;
         private System.Windows.Forms.Label RutaDescarga;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label ArchivoRecuperar;
