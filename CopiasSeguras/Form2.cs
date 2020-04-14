@@ -44,7 +44,13 @@ namespace CopiasSeguras
 
         private void botonEncriptar_Click(object sender, EventArgs e)
         {
-            String path = ArchivoaCifrar.Text;
+            //String path = ArchivoaCifrar.Text;
+
+            String path = @"C:\Users\Sergio Yáñez Cánovas\Desktop\Nueva carpeta";
+            zip zip = new zip();
+            zip.Comprimir(path);
+            path = path + ".zip";
+
             byte[] ArchivoCifrar = File.ReadAllBytes(path);
 
             AES cifrador = new AES();
@@ -57,6 +63,30 @@ namespace CopiasSeguras
             byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path);
 
             Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
+            Console.WriteLine(jsonString);
+        }
+
+        private void botonDesencriptar_Click(object sender, EventArgs e)
+        {
+            //String path = ArchivoaDescifrar.Text;
+
+            String pathZip = @"C:\Users\Sergio Yáñez Cánovas\Desktop\Nueva carpeta.zip";
+            zip zip = new zip();
+            zip.Descomprimir(pathZip);
+            string path = pathZip.Remove(pathZip.Length - 4, 4);
+
+            byte[] ArchivoDescifrar = File.ReadAllBytes(path);
+
+            AES cifrador = new AES();
+
+            string jsonString;
+            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
+
+            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
+
+            byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
+
+            Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
             Console.WriteLine(jsonString);
         }
 
@@ -95,24 +125,6 @@ namespace CopiasSeguras
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 ArchivoaDescifrar.Text = ofd.FileName;
            
-        }
-
-        private void botonDesencriptar_Click(object sender, EventArgs e)
-        {
-            String path = ArchivoaDescifrar.Text;
-            byte[] ArchivoDescifrar = File.ReadAllBytes(path);
-
-            AES cifrador = new AES();
-
-            string jsonString;
-            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
-
-            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
-            byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
-
-            Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
-            Console.WriteLine(jsonString);
         }
 
         private void botonMenuSubir_Click(object sender, EventArgs e)

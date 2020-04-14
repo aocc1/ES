@@ -77,3 +77,4 @@ C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\System.
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\System.ValueTuple.xml
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.CopyComplete
+C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.CoreCompileInputs.cache
