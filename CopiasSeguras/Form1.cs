@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using cliente.tcp;
 
 namespace CopiasSeguras
 {
@@ -32,8 +33,9 @@ namespace CopiasSeguras
             
             if (Equals(passReg1.Text, passReg2.Text))
             {
+                SslTcpClient cliente = new SslTcpClient(nombreRegistro.Text,passReg1.Text);
 
-
+                //registrarse
                 panelRegistro.Hide();
                 panelInicio.Show();
 
