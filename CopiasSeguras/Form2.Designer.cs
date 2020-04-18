@@ -71,6 +71,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "AES",
+            "RSA"});
             this.comboBox1.Location = new System.Drawing.Point(9, 84);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -304,6 +307,9 @@
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "AES",
+            "RSA"});
             this.comboBox3.Location = new System.Drawing.Point(9, 84);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);

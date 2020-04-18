@@ -153,7 +153,7 @@ namespace CopiasSeguras.Cifrado
                     return memStream.ToArray();
                 }
             }
-            return null;
+            //return null;
         }
 
     }
