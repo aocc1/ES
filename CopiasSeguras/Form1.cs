@@ -33,9 +33,11 @@ namespace CopiasSeguras
             
             if (Equals(passReg1.Text, passReg2.Text))
             {
-                SslTcpClient cliente = new SslTcpClient(nombreRegistro.Text,passReg1.Text);
+               
 
                 //registrarse
+                SslTcpClient.Start("R",nombreRegistro.Text, passReg1.Text);
+
                 panelRegistro.Hide();
                 panelInicio.Show();
 

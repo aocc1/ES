@@ -14,16 +14,13 @@ namespace cliente.tcp
     public class SslTcpClient 
 
     {
-        public String user;
-        public String pass;
+        public static String user;
+        public static String pass;
+        public static String indicative;
 
         private static Hashtable certificateErrors = new Hashtable();
       
-        public SslTcpClient(String u ,String p)
-        {
-            this.user = u;
-            this.pass = p;
-        }
+       
 
         // The following method is invoked by the RemoteCertificateValidationDelegate.
         public static bool ValidateServerCertificate(
@@ -44,7 +41,7 @@ namespace cliente.tcp
         {
             // Create a TCP/IP client socket.
             // machineName is the host running the server application.
-            TcpClient client = new TcpClient(machineName,443);
+            TcpClient client = new TcpClient(machineName, 8080);
             Console.WriteLine("Client connected.");
             // Create an SSL stream that will close the client's stream.
             SslStream sslStream = new SslStream(
@@ -71,7 +68,8 @@ namespace cliente.tcp
             }
             // Encode a test message into a byte array.
             // Signal the end of the message using the "<EOF>".
-            byte[] messsage = Encoding.UTF8.GetBytes("Hello from the client.<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes(indicative+" "+user + " "+pass+".<EOF>");
+            //byte[] messsage = Encoding.UTF8.GetBytes("Hello from the client.<EOF>");
             // Send hello message to the server. 
             sslStream.Write(messsage);
             sslStream.Flush();
@@ -109,19 +107,22 @@ namespace cliente.tcp
             
             return messageData.ToString();
         }
-        private static void DisplayUsage()
-        { 
-            Console.WriteLine("To start the client specify:");
-            Console.WriteLine("clientSync machineName [serverName]");
-            Environment.Exit(1);
-        }
-        public static int Start()
+      
+        public static int Start(String i,String u, String p)
         {
+            //-A nombre_user contraseña- para autenticar
+            //-R nombre_user contraseña- para registrar
+            //D nombre_user datos , descarga
+            //G nombre_user datos para guardar datos , de momento uno por user
+            user = u;
+            pass = p;
+            indicative = i;
+
             string serverCertificateName = null;
             string machineName = null;
            // if (args == null ||args.Length <1 )
             //{
-                DisplayUsage();
+               // DisplayUsage();
             //}
             // User can specify the machine name and server name.
             // Server name must match the name on the server's certificate. 
