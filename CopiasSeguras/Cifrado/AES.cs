@@ -126,8 +126,12 @@ namespace CopiasSeguras.Cifrado
 
             using (var aes = new AesCryptoServiceProvider())
             {
-                aes.GenerateIV();
-                aes.GenerateKey();
+
+                //aes.GenerateIV();
+                //aes.GenerateKey();
+
+                aes.IV = System.Text.Encoding.UTF8.GetBytes("ivProvisional16-");
+                aes.Key = System.Text.Encoding.UTF8.GetBytes("keyProvisional32----------------");
 
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
@@ -144,7 +148,7 @@ namespace CopiasSeguras.Cifrado
                         return null;
 
                     cryptoStream.Write(archivo, 0, archivo.Length);
-                    cryptoStream.FlushFinalBlock(); //Al desencriptar, error
+                    cryptoStream.FlushFinalBlock();
                     File.WriteAllBytes(path, memStream.ToArray());
                     return memStream.ToArray();
                 }
