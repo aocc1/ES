@@ -16,7 +16,7 @@ namespace cliente.tcp
     {
         public static String user;
         public static String pass;
-        public static String indicative;
+ 
 
         private static Hashtable certificateErrors = new Hashtable();
       
@@ -66,6 +66,8 @@ namespace cliente.tcp
                 client.Close();
                 return;
             }
+
+            /*
             // Encode a test message into a byte array.
             // Signal the end of the message using the "<EOF>".
             byte[] messsage = Encoding.UTF8.GetBytes(indicative+" "+user + " "+pass+".<EOF>");
@@ -79,6 +81,7 @@ namespace cliente.tcp
             // Close the client connection.
             client.Close();
             Console.WriteLine("Client closed.");
+            */
         }
         static string ReadMessage(SslStream sslStream)
         {
@@ -107,8 +110,36 @@ namespace cliente.tcp
             
             return messageData.ToString();
         }
-      
-        public static int Start(String i,String u, String p)
+        public static void authenticate(SslStream sslStream,String user, String pass)
+        {
+            byte[] messsage = Encoding.UTF8.GetBytes("A" + " " + user + " " + pass + ".<EOF>");
+
+            sslStream.Write(messsage);
+            sslStream.Flush();
+        }
+
+        public static void register(SslStream sslStream, String user, String pass)
+        {
+            byte[] messsage = Encoding.UTF8.GetBytes("R" + " " + user + " " + pass + ".<EOF>");
+
+            sslStream.Write(messsage);
+            sslStream.Flush();
+        }
+        public static void download(SslStream sslStream, String user, String pass)
+        {
+            byte[] messsage = Encoding.UTF8.GetBytes("D" + " " + user + " " + pass + ".<EOF>");
+
+            sslStream.Write(messsage);
+            sslStream.Flush();
+        }
+        public static void save(SslStream sslStream, String user, String pass)
+        {
+            byte[] messsage = Encoding.UTF8.GetBytes("G" + " " + user + " " + pass + ".<EOF>");
+
+            sslStream.Write(messsage);
+            sslStream.Flush();
+        }
+        public static int Start(String u, String p)
         {
             //-A nombre_user contraseña- para autenticar
             //-R nombre_user contraseña- para registrar
@@ -116,7 +147,7 @@ namespace cliente.tcp
             //G nombre_user datos para guardar datos , de momento uno por user
             user = u;
             pass = p;
-            indicative = i;
+        
 
             string serverCertificateName = null;
             string machineName = null;
