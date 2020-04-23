@@ -12,14 +12,98 @@ using System.Security.Cryptography;
 using CopiasSeguras.Cifrado;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Timers;
 
 namespace CopiasSeguras
 {
     public partial class Form2 : Form
     {
+
+        private static System.Timers.Timer aTimer;
+        public static int dateDay;
+        public static int dateMonth;
+        public static int dateYear;
+
+        public static int dateMinute;
+
         public Form2()
         {
             InitializeComponent();
+
+            SetTimer();
+
+            DateTime date = DateTime.Now;
+            dateDay = date.Day;
+            dateMonth = date.Month;
+            dateYear = date.Year;
+
+            dateMinute = date.Minute;
+
+            Console.ReadLine();
+            //aTimer.Stop();
+            //aTimer.Dispose();
+        }
+
+        private static void SetTimer()
+        {
+            // Create a timer with a two second interval.
+            aTimer = new System.Timers.Timer(1000);
+            // Hook up the Elapsed event for the timer. 
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            DateTime date = DateTime.Now;
+            int dateDayAct = date.Day;
+            int dateMonthAct = date.Month;
+            int dateYearAct = date.Year;
+
+            int dateMinuteAct = date.Minute;
+
+            if (dateYearAct != dateYear)
+            {
+                backup();
+                dateYear = dateYearAct;
+            }
+            else if (dateMonthAct != dateMonth)
+            {
+                backup();
+                dateMonth = dateMonthAct;
+            }
+            else if (dateDayAct != dateDay)
+            {
+                backup();
+                dateDay = dateDayAct;
+            }
+            else if (dateMinuteAct != dateMinute)
+            {
+                backup();
+                dateMinute = dateMinuteAct;
+            }
+        }
+
+        public static void backup()
+        {
+            String firstPath = @"C:\Backups\Files";
+            zip zip = new zip();
+            zip.Comprimir(firstPath);
+            String path = firstPath + ".zip";
+
+            string fecha = DateTime.Now.Date.ToString();
+            fecha = fecha + " " + DateTime.Now.DayOfWeek + " " + DateTime.Now.Hour + ";" + DateTime.Now.Minute;
+            fecha = fecha.Replace('/', '-');
+            String[] split = fecha.Split(' ');
+            fecha = split[0] + " " + split[2] + " " + split[3];
+
+            String newPath = @"C:\Backups\" + fecha + ".zip";
+            File.Move(path, newPath);
+
+            byte[] ArchivoCifrar = File.ReadAllBytes(newPath);
+            AES cifrador = new AES();
+            byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, newPath);
         }
 
         private void SlecArchivoButton_Click(object sender, EventArgs e)
@@ -44,46 +128,83 @@ namespace CopiasSeguras
 
         private void botonEncriptar_Click(object sender, EventArgs e)
         {
-            String path = ArchivoaCifrar.Text;
-            zip zip = new zip();
-            zip.Comprimir(path);
-            path = path + ".zip";
+            if(comboBox1.Text == "AES"){
+                if (ArchivoaCifrar.Text != ""){
+                    String path = ArchivoaCifrar.Text;
+                    zip zip = new zip();
+                    zip.Comprimir(path);
 
-            byte[] ArchivoCifrar = File.ReadAllBytes(path);
+                    string pathZip = path;
+                    System.Diagnostics.Debug.WriteLine(pathZip);
+                    Directory.Delete(pathZip, true);
 
-            AES cifrador = new AES();
+                    path = path + ".zip";
 
-            string jsonString;
-            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoCifrar));
+                    byte[] ArchivoCifrar = File.ReadAllBytes(path);
 
-            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-            
-            byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path);
+                    AES cifrador = new AES();
 
-            Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
-            Console.WriteLine(jsonString);
+                    string jsonString;
+                    jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoCifrar));
+
+                    byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
+
+                    byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path);
+
+                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
+                    Console.WriteLine(jsonString);
+                }
+                else
+                {
+                    MessageBox.Show("Selecciona una carpeta");
+                }
+            }
+            else if(comboBox1.Text == "RSA"){
+
+            }
+            else{
+                MessageBox.Show("Selecciona un tipo de cifrado");
+            }
         }
 
         private void botonDesencriptar_Click(object sender, EventArgs e)
         {
-            String path = ArchivoaDescifrar.Text;
+            if(comboBox3.Text == "AES"){
+                if (ArchivoaDescifrar.Text != ""){
+                    String path = ArchivoaDescifrar.Text;
 
-            byte[] ArchivoDescifrar = File.ReadAllBytes(path);
+                    byte[] ArchivoDescifrar = File.ReadAllBytes(path);
 
-            AES cifrador = new AES();
+                    AES cifrador = new AES();
 
-            string jsonString;
-            jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
+                    string jsonString;
+                    jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
 
-            byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
+                    byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
             
-            byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
+                    byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
 
-            Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
-            Console.WriteLine(jsonString);
+                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
+                    Console.WriteLine(jsonString);
             
-            zip zip = new zip();
-            zip.Descomprimir(path);
+                    zip zip = new zip();
+                    zip.Descomprimir(path);
+
+                    string pathZip = path;
+                    //System.Diagnostics.Debug.WriteLine(pathZip);
+                    File.Delete(pathZip);
+                }
+                else
+                {
+                    MessageBox.Show("Selecciona un archivo");
+                }
+            }
+            else if(comboBox3.Text == "RSA"){
+
+            }
+            else{
+                MessageBox.Show("Selecciona un tipo de cifrado");
+            }
         }
 
         private void botonMenuDescifra_Click(object sender, EventArgs e)
@@ -129,6 +250,16 @@ namespace CopiasSeguras
             panelDesencriptado.Hide();
             panelCifrado.Hide();
             panelSubir.Show();
+
+        }
+
+        private void SelccionaArchivo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }

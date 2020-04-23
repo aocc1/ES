@@ -125,18 +125,19 @@
             this.SelccionaArchivo.AutoSize = true;
             this.SelccionaArchivo.Location = new System.Drawing.Point(6, 153);
             this.SelccionaArchivo.Name = "SelccionaArchivo";
-            this.SelccionaArchivo.Size = new System.Drawing.Size(104, 13);
+            this.SelccionaArchivo.Size = new System.Drawing.Size(110, 13);
             this.SelccionaArchivo.TabIndex = 2;
-            this.SelccionaArchivo.Text = "Selcciona el Archivo";
+            this.SelccionaArchivo.Text = "Selecciona la carpeta";
+            this.SelccionaArchivo.Click += new System.EventHandler(this.SelccionaArchivo_Click);
             // 
             // SeleccionaCifrado
             // 
             this.SeleccionaCifrado.AutoSize = true;
             this.SeleccionaCifrado.Location = new System.Drawing.Point(6, 68);
             this.SeleccionaCifrado.Name = "SeleccionaCifrado";
-            this.SeleccionaCifrado.Size = new System.Drawing.Size(127, 13);
+            this.SeleccionaCifrado.Size = new System.Drawing.Size(141, 13);
             this.SeleccionaCifrado.TabIndex = 1;
-            this.SeleccionaCifrado.Text = "Selecciona el tipo Cifrado";
+            this.SeleccionaCifrado.Text = "Selecciona el tipo de cifrado";
             // 
             // EncriptarTitulo
             // 
@@ -193,9 +194,9 @@
             this.RutaDescarga.AutoSize = true;
             this.RutaDescarga.Location = new System.Drawing.Point(6, 153);
             this.RutaDescarga.Name = "RutaDescarga";
-            this.RutaDescarga.Size = new System.Drawing.Size(150, 13);
+            this.RutaDescarga.Size = new System.Drawing.Size(154, 13);
             this.RutaDescarga.TabIndex = 2;
-            this.RutaDescarga.Text = "Selcciona la ruta de Descarga";
+            this.RutaDescarga.Text = "Selecciona la ruta de descarga";
             // 
             // comboBox2
             // 
@@ -219,9 +220,9 @@
             this.RecuperarArchivo.AutoSize = true;
             this.RecuperarArchivo.Location = new System.Drawing.Point(6, 17);
             this.RecuperarArchivo.Name = "RecuperarArchivo";
-            this.RecuperarArchivo.Size = new System.Drawing.Size(96, 13);
+            this.RecuperarArchivo.Size = new System.Drawing.Size(94, 13);
             this.RecuperarArchivo.TabIndex = 0;
-            this.RecuperarArchivo.Text = "Recuperar Archivo";
+            this.RecuperarArchivo.Text = "Descargar archivo";
             // 
             // botonMenuCifra
             // 
@@ -300,9 +301,10 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 153);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Selcciona el Archivo";
+            this.label1.Text = "Selecciona el archivo";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // comboBox3
             // 
@@ -320,9 +322,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 13);
+            this.label2.Size = new System.Drawing.Size(141, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Selecciona el tipo Cifrado";
+            this.label2.Text = "Selecciona el tipo de cifrado";
             // 
             // DesencriptarTitulo
             // 
@@ -376,18 +378,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 153);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 13);
+            this.label4.Size = new System.Drawing.Size(109, 13);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Selecciona el Archivo";
+            this.label4.Text = "Selecciona el archivo";
             // 
             // SubirArchivo
             // 
             this.SubirArchivo.AutoSize = true;
             this.SubirArchivo.Location = new System.Drawing.Point(6, 17);
             this.SubirArchivo.Name = "SubirArchivo";
-            this.SubirArchivo.Size = new System.Drawing.Size(70, 13);
+            this.SubirArchivo.Size = new System.Drawing.Size(69, 13);
             this.SubirArchivo.TabIndex = 0;
-            this.SubirArchivo.Text = "Subir Archivo";
+            this.SubirArchivo.Text = "Subir archivo";
             // 
             // botonMenuSubir
             // 
