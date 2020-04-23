@@ -115,14 +115,14 @@ namespace cliente.tcp
             return messageData.ToString();
         }
         public static void conecctionClose() {
-            byte[] messsage = Convert.FromBase64String("Cerrar.<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes("Cerrar.<EOF>");
             sslStream.Write(messsage);
             sslStream.Flush();
             client.Close();
         }
         public static Boolean authenticate(String user, String pass)
         {
-            byte[] messsage = Convert.FromBase64String("A" + " " + user + " " + pass + ".<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes("A" + " " + user + " " + pass + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
@@ -142,7 +142,7 @@ namespace cliente.tcp
 
         public static Boolean register(String user, String pass)
         {
-            byte[] messsage = Convert.FromBase64String("R" + " " + user + " " + pass + ".<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes("R" + " " + user + " " + pass + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
@@ -214,14 +214,13 @@ namespace cliente.tcp
                 return false;
             }
         }
-        public static int Start(String u, String p)
+        public static int Start()
         {
             //-A nombre_user contraseña- para autenticar
             //-R nombre_user contraseña- para registrar
             //D nombre_user datos , descarga
             //G nombre_user datos para guardar datos , de momento uno por user
-            user = u;
-            pass = p;
+        
         
 
             string serverCertificateName = null;

@@ -36,11 +36,19 @@ namespace CopiasSeguras
                
 
                 //registrarse
-                SslTcpClient.Start(nombreRegistro.Text, passReg1.Text);
-                SslTcpClient.register(nombreRegistro.Text, passReg1.Text);
+                SslTcpClient.Start();
+                if(SslTcpClient.register(nombreRegistro.Text, passReg1.Text))
+                {
+                    SslTcpClient.conecctionClose();
+                    panelRegistro.Hide();
+                    panelInicio.Show();
+                }
+                else
+                {
+                    SslTcpClient.conecctionClose();
+                }
 
-                panelRegistro.Hide();
-                panelInicio.Show();
+                
 
             }
             else
@@ -55,18 +63,26 @@ namespace CopiasSeguras
             this.Hide();
 
             String pass = passInicio.Text;
+            String user = usuarioInicio.Text;
+            SslTcpClient.Start();
+            
 
-            SHA256 sha256 = SHA256.Create();
+            if(SslTcpClient.authenticate(usuarioInicio.Text, usuarioInicio.Text))
+            {
+                Form2 f2 = new Form2();
+                f2.ShowDialog();
 
-            byte[] haseo = sha256.ComputeHash(Encoding.UTF8.GetBytes(pass));
+
+                this.Close();
+            }
+            else
+            {
+                SslTcpClient.conecctionClose();
+            }
 
             //Console.WriteLine(System.Text.Encoding.UTF8.GetString(haseo));
 
-            Form2 f2 = new Form2();
-            f2.ShowDialog();
 
-
-            this.Close();
 
         }
     }
