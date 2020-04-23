@@ -7,6 +7,7 @@ using System.Security.Authentication;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
+using System.Windows.Forms;
 
 namespace cliente.tcp
 {
@@ -16,7 +17,10 @@ namespace cliente.tcp
     {
         public static String user;
         public static String pass;
- 
+        public static TcpClient client;
+        public static SslStream sslStream ;
+
+
 
         private static Hashtable certificateErrors = new Hashtable();
       
@@ -33,18 +37,18 @@ namespace cliente.tcp
                 return true;
 
             Console.WriteLine("Certificate error: {0}", sslPolicyErrors);
-            
+
             // Do not allow this client to communicate with unauthenticated servers.
-            return false;
+            return true;
         }
         public static void RunClient(string machineName, string serverName)  
         {
             // Create a TCP/IP client socket.
             // machineName is the host running the server application.
-            TcpClient client = new TcpClient(machineName, 8080);
+            client = new TcpClient(machineName, 8080);
             Console.WriteLine("Client connected.");
             // Create an SSL stream that will close the client's stream.
-            SslStream sslStream = new SslStream(
+            sslStream = new SslStream(
                 client.GetStream(), 
                 false, 
                 new RemoteCertificateValidationCallback (ValidateServerCertificate), 
@@ -110,34 +114,105 @@ namespace cliente.tcp
             
             return messageData.ToString();
         }
-        public static void authenticate(SslStream sslStream,String user, String pass)
+        public static void conecctionClose() {
+            byte[] messsage = Convert.FromBase64String("Cerrar.<EOF>");
+            sslStream.Write(messsage);
+            sslStream.Flush();
+            client.Close();
+        }
+        public static Boolean authenticate(String user, String pass)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("A" + " " + user + " " + pass + ".<EOF>");
+            byte[] messsage = Convert.FromBase64String("A" + " " + user + " " + pass + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
+            string serverMessage = ReadMessage(sslStream);
+
+            if (serverMessage == "Bienvenido " + user + ".<EOF>")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(serverMessage);
+                return false;
+            }
+                
         }
 
-        public static void register(SslStream sslStream, String user, String pass)
+        public static Boolean register(String user, String pass)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("R" + " " + user + " " + pass + ".<EOF>");
+            byte[] messsage = Convert.FromBase64String("R" + " " + user + " " + pass + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
+            string serverMessage = ReadMessage(sslStream);
+
+            if (serverMessage == "Registrado correctamente.<EOF>" )
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(serverMessage);
+                return false;
+            }
+
         }
-        public static void download(SslStream sslStream, String user, String pass)
+        public static String download(String user, String nombreDatos)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("D" + " " + user + " " + pass + ".<EOF>");
+            byte[] messsage = Convert.FromBase64String("D" + " " + user + " " + nombreDatos + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
+            string serverMessage = ReadMessage(sslStream);
+            
+            return serverMessage;
+            
+            
+
         }
-        public static void save(SslStream sslStream, String user, String pass)
+
+        public static String[] consultData(String user)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("G" + " " + user + " " + pass + ".<EOF>");
+            byte[] messsage = Convert.FromBase64String("C" + " " + user + ".<EOF>");
+
 
             sslStream.Write(messsage);
             sslStream.Flush();
+            string serverMessage = ReadMessage(sslStream);
+            Int32 count = Int32.Parse(serverMessage);
+
+            String[] strlist = null;
+            if (count != 0)
+            {
+                serverMessage = ReadMessage(sslStream);
+                String[] separator = { " " };
+                strlist = serverMessage.Split(separator, count, StringSplitOptions.RemoveEmptyEntries);
+                
+
+            }
+           
+            return strlist;
+        }
+
+            public static Boolean save( String user, String nombreDatos , String datos)
+        {
+            byte[] messsage = Convert.FromBase64String("G" + " " + user + " " + nombreDatos + " " + datos + ".<EOF>");
+
+            sslStream.Write(messsage);
+            sslStream.Flush();
+
+            string serverMessage = ReadMessage(sslStream);
+            if (serverMessage == "Operacion exitosa.<EOF>")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(serverMessage);
+                return false;
+            }
         }
         public static int Start(String u, String p)
         {

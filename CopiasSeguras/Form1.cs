@@ -36,7 +36,8 @@ namespace CopiasSeguras
                
 
                 //registrarse
-                SslTcpClient.Start("R",nombreRegistro.Text, passReg1.Text);
+                SslTcpClient.Start(nombreRegistro.Text, passReg1.Text);
+                SslTcpClient.register(nombreRegistro.Text, passReg1.Text);
 
                 panelRegistro.Hide();
                 panelInicio.Show();
