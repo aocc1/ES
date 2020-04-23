@@ -210,8 +210,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(226, 326);
-            this.Controls.Add(this.panelRegistro);
             this.Controls.Add(this.panelInicio);
+            this.Controls.Add(this.panelRegistro);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Copias Seguras";

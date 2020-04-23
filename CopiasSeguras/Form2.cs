@@ -13,7 +13,7 @@ using CopiasSeguras.Cifrado;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Timers;
-
+using cliente.tcp;
 namespace CopiasSeguras
 {
     public partial class Form2 : Form
@@ -218,11 +218,11 @@ namespace CopiasSeguras
 
         private void botonMenuDescarga_Click(object sender, EventArgs e)
         {
-            panelCifrado.Hide();
-            panelDesencriptado.Hide();
-            panelSubir.Hide();
-            panelDescarga.Show();
-            
+                panelCifrado.Hide();
+                panelDesencriptado.Hide();
+                panelSubir.Hide();
+                panelDescarga.Show();
+    
         }
 
         private void botonMenuCifra_Click(object sender, EventArgs e)
@@ -253,14 +253,52 @@ namespace CopiasSeguras
 
         }
 
-        private void SelccionaArchivo_Click(object sender, EventArgs e)
+        private void botonDescargar_Click(object sender, EventArgs e)
         {
+            String[] listaDatos = SslTcpClient.consultData();
+            foreach (string nombre in listaDatos)
+            {
+                comboBox2.Items.Add(nombre);
+            }
+            
+            if (comboBox2.Text!="")
+            {
+                byte[] datos  = SslTcpClient.download(comboBox2.Text);
+                // y guardarlo en un fichero o algo
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un nombre de la lista");
+            }
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void botonSubir_Click(object sender, EventArgs e)
         {
+            if (ArchivoaSubir.Text != "")
+            {
+                if (nombreFicheroAsubir.Text != "")
+                {
+                    SslTcpClient.save(nombreFicheroAsubir.Text,ArchivoaSubir.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Introduce un nombre");
+                }
 
+                
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un fichero");
+            }
+        }
+
+        private void SelecSubButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog(); //Para archivos
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                ArchivoaSubir.Text = ofd.FileName;
         }
     }
 }
