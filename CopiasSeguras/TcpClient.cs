@@ -11,20 +11,20 @@ using System.Windows.Forms;
 
 namespace cliente.tcp
 {
- 
-    public class SslTcpClient 
+
+    public class SslTcpClient
 
     {
         public static String user;
         public static String pass;
         public static TcpClient client;
-        public static SslStream sslStream ;
+        public static SslStream sslStream;
 
 
 
         private static Hashtable certificateErrors = new Hashtable();
-      
-       
+
+
 
         // The following method is invoked by the RemoteCertificateValidationDelegate.
         public static bool ValidateServerCertificate(
@@ -33,7 +33,7 @@ namespace cliente.tcp
               X509Chain chain,
               SslPolicyErrors sslPolicyErrors)
         {
-           if (sslPolicyErrors == SslPolicyErrors.None)
+            if (sslPolicyErrors == SslPolicyErrors.None)
                 return true;
 
             Console.WriteLine("Certificate error: {0}", sslPolicyErrors);
@@ -41,7 +41,7 @@ namespace cliente.tcp
             // Do not allow this client to communicate with unauthenticated servers.
             return true;
         }
-        public static void RunClient(string machineName, string serverName)  
+        public static void RunClient(string machineName, string serverName)
         {
             // Create a TCP/IP client socket.
             // machineName is the host running the server application.
@@ -49,16 +49,16 @@ namespace cliente.tcp
             Console.WriteLine("Client connected.");
             // Create an SSL stream that will close the client's stream.
             sslStream = new SslStream(
-                client.GetStream(), 
-                false, 
-                new RemoteCertificateValidationCallback (ValidateServerCertificate), 
+                client.GetStream(),
+                false,
+                new RemoteCertificateValidationCallback(ValidateServerCertificate),
                 null
                 );
             // The server name must match the name on the server certificate.
-            try 
+            try
             {
                 sslStream.AuthenticateAsClient(serverName);
-            } 
+            }
             catch (AuthenticationException e)
             {
                 Console.WriteLine("Exception: {0}", e.Message);
@@ -66,7 +66,7 @@ namespace cliente.tcp
                 {
                     Console.WriteLine("Inner exception: {0}", e.InnerException.Message);
                 }
-                Console.WriteLine ("Authentication failed - closing the connection.");
+                Console.WriteLine("Authentication failed - closing the connection.");
                 client.Close();
                 return;
             }
@@ -92,26 +92,26 @@ namespace cliente.tcp
             // Read the  message sent by the server.
             // The end of the message is signaled using the
             // "<EOF>" marker.
-            byte [] buffer = new byte[2048];
+            byte[] buffer = new byte[2048];
             StringBuilder messageData = new StringBuilder();
             int bytes = -1;
             do
             {
                 bytes = sslStream.Read(buffer, 0, buffer.Length);
-                        
+
                 // Use Decoder class to convert from bytes to UTF8
                 // in case a character spans two buffers.
                 Decoder decoder = Encoding.UTF8.GetDecoder();
-                char[] chars = new char[decoder.GetCharCount(buffer,0,bytes)];
-                decoder.GetChars(buffer, 0, bytes, chars,0);
-                messageData.Append (chars);
+                char[] chars = new char[decoder.GetCharCount(buffer, 0, bytes)];
+                decoder.GetChars(buffer, 0, bytes, chars, 0);
+                messageData.Append(chars);
                 // Check for EOF.
                 if (messageData.ToString().IndexOf("<EOF>") != -1)
                 {
                     break;
                 }
-            } while (bytes != 0); 
-            
+            } while (bytes != 0);
+
             return messageData.ToString();
         }
         public static void conecctionClose() {
@@ -120,36 +120,18 @@ namespace cliente.tcp
             sslStream.Flush();
             client.Close();
         }
-        public static Boolean authenticate(String user, String pass)
+        public static Boolean authenticate(String u, String p)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("A" + " " + user + " " + pass + ".<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes("A" + " " + u + " " + p + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
 
-            if (serverMessage == "Bienvenido " + user + ".<EOF>")
+            if (serverMessage == "Bienvenido " + u + ".<EOF>")
             {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show(serverMessage);
-                return false;
-            }
-                
-        }
-
-        public static Boolean register(String user, String pass)
-        {
-            byte[] messsage = Encoding.UTF8.GetBytes("R" + " " + user + " " + pass + ".<EOF>");
-
-            sslStream.Write(messsage);
-            sslStream.Flush();
-            string serverMessage = ReadMessage(sslStream);
-
-            if (serverMessage == "Registrado correctamente.<EOF>" )
-            {
+                user = u;
+                pass = p;
                 return true;
             }
             else
@@ -159,23 +141,43 @@ namespace cliente.tcp
             }
 
         }
-        public static String download(String user, String nombreDatos)
+
+        public static Boolean register(String u, String p)
         {
-            byte[] messsage = Convert.FromBase64String("D" + " " + user + " " + nombreDatos + ".<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes("R" + " " + u + " " + p + ".<EOF>");
+
+            sslStream.Write(messsage);
+            sslStream.Flush();
+            string serverMessage = ReadMessage(sslStream);
+
+            if (serverMessage == "Registrado correctamente.<EOF>")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(serverMessage);
+                return false;
+            }
+
+        }
+        public static byte[] download(String nombreDatos)
+        {
+            byte[] messsage = Encoding.UTF8.GetBytes("D" + " " + user + " " + nombreDatos + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
             
-            return serverMessage;
+            return Encoding.UTF8.GetBytes(serverMessage);
             
             
 
         }
 
-        public static String[] consultData(String user)
+        public static String[] consultData()
         {
-            byte[] messsage = Convert.FromBase64String("C" + " " + user + ".<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes("C" + " " + user + ".<EOF>");
 
 
             sslStream.Write(messsage);
@@ -196,9 +198,9 @@ namespace cliente.tcp
             return strlist;
         }
 
-            public static Boolean save( String user, String nombreDatos , String datos)
+            public static Boolean save(String nombreDatos , String datos)
         {
-            byte[] messsage = Convert.FromBase64String("G" + " " + user + " " + nombreDatos + " " + datos + ".<EOF>");
+            byte[] messsage = Encoding.UTF8.GetBytes("G" + " " + user + " " + nombreDatos + " " + datos + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
