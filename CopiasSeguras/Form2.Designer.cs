@@ -56,6 +56,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.DesencriptarTitulo = new System.Windows.Forms.Label();
             this.panelSubir = new System.Windows.Forms.Panel();
+            this.nombreFicheroAsubir = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.botonSubir = new System.Windows.Forms.Button();
             this.SelecSubButton = new System.Windows.Forms.Button();
             this.ArchivoaSubir = new System.Windows.Forms.TextBox();
@@ -128,7 +130,6 @@
             this.SelccionaArchivo.Size = new System.Drawing.Size(110, 13);
             this.SelccionaArchivo.TabIndex = 2;
             this.SelccionaArchivo.Text = "Selecciona la carpeta";
-            this.SelccionaArchivo.Click += new System.EventHandler(this.SelccionaArchivo_Click);
             // 
             // SeleccionaCifrado
             // 
@@ -171,6 +172,7 @@
             this.botonDescargar.TabIndex = 5;
             this.botonDescargar.Text = "Descargar";
             this.botonDescargar.UseVisualStyleBackColor = true;
+            this.botonDescargar.Click += new System.EventHandler(this.botonDescargar_Click);
             // 
             // SelecDescButton
             // 
@@ -304,7 +306,6 @@
             this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Selecciona el archivo";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // comboBox3
             // 
@@ -337,6 +338,8 @@
             // 
             // panelSubir
             // 
+            this.panelSubir.Controls.Add(this.nombreFicheroAsubir);
+            this.panelSubir.Controls.Add(this.label3);
             this.panelSubir.Controls.Add(this.botonSubir);
             this.panelSubir.Controls.Add(this.SelecSubButton);
             this.panelSubir.Controls.Add(this.ArchivoaSubir);
@@ -348,6 +351,22 @@
             this.panelSubir.TabIndex = 7;
             this.panelSubir.Visible = false;
             // 
+            // nombreFicheroAsubir
+            // 
+            this.nombreFicheroAsubir.Location = new System.Drawing.Point(9, 130);
+            this.nombreFicheroAsubir.Name = "nombreFicheroAsubir";
+            this.nombreFicheroAsubir.Size = new System.Drawing.Size(306, 20);
+            this.nombreFicheroAsubir.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Introduce un nombre";
+            // 
             // botonSubir
             // 
             this.botonSubir.Location = new System.Drawing.Point(90, 196);
@@ -356,6 +375,7 @@
             this.botonSubir.TabIndex = 5;
             this.botonSubir.Text = "Subir";
             this.botonSubir.UseVisualStyleBackColor = true;
+            this.botonSubir.Click += new System.EventHandler(this.botonSubir_Click);
             // 
             // SelecSubButton
             // 
@@ -365,6 +385,7 @@
             this.SelecSubButton.TabIndex = 4;
             this.SelecSubButton.Text = "Explorar Carpetas";
             this.SelecSubButton.UseVisualStyleBackColor = true;
+            this.SelecSubButton.Click += new System.EventHandler(this.SelecSubButton_Click);
             // 
             // ArchivoaSubir
             // 
@@ -464,5 +485,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label SubirArchivo;
         private System.Windows.Forms.Button botonMenuSubir;
+        private System.Windows.Forms.TextBox nombreFicheroAsubir;
+        private System.Windows.Forms.Label label3;
     }
 }
