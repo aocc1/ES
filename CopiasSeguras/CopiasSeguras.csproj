@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cifrado\AES.cs" />
+    <Compile Include="Cifrado\RSA.cs" />
     <Compile Include="Cifrado\zip.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
