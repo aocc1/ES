@@ -8,6 +8,7 @@ using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace cliente.tcp
 {
@@ -145,7 +146,7 @@ namespace cliente.tcp
         public static Boolean register(String u, String p)
         {
             byte[] messsage = Encoding.UTF8.GetBytes("R" + " " + u + " " + p + ".<EOF>");
-
+            Debug.Write(u + " " + p);
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
