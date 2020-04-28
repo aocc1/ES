@@ -102,7 +102,7 @@ namespace cliente.tcp
 
                 // Use Decoder class to convert from bytes to UTF8
                 // in case a character spans two buffers.
-                Decoder decoder = Encoding.UTF8.GetDecoder();
+                Decoder decoder = Encoding.ASCII.GetDecoder();
                 char[] chars = new char[decoder.GetCharCount(buffer, 0, bytes)];
                 decoder.GetChars(buffer, 0, bytes, chars, 0);
                 messageData.Append(chars);
@@ -116,14 +116,14 @@ namespace cliente.tcp
             return messageData.ToString();
         }
         public static void conecctionClose() {
-            byte[] messsage = Encoding.UTF8.GetBytes("Cerrar.<EOF>");
+            byte[] messsage = Encoding.ASCII.GetBytes("Cerrar.<EOF>");
             sslStream.Write(messsage);
             sslStream.Flush();
             client.Close();
         }
         public static Boolean authenticate(String u, String p)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("A" + " " + u + " " + p + ".<EOF>");
+            byte[] messsage = Encoding.ASCII.GetBytes("A" + " " + u + " " + p + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
@@ -145,7 +145,7 @@ namespace cliente.tcp
 
         public static Boolean register(String u, String p)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("R" + " " + u + " " + p + ".<EOF>");
+            byte[] messsage = Encoding.ASCII.GetBytes("R" + " " + u + " " + p + ".<EOF>");
             Debug.Write(u + " " + p);
             sslStream.Write(messsage);
             sslStream.Flush();
@@ -164,13 +164,13 @@ namespace cliente.tcp
         }
         public static byte[] download(String nombreDatos)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("D" + " " + user + " " + nombreDatos + ".<EOF>");
+            byte[] messsage = Encoding.ASCII.GetBytes("D" + " " + user + " " + nombreDatos + ".<EOF>");
 
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
             
-            return Encoding.UTF8.GetBytes(serverMessage);
+            return Encoding.ASCII.GetBytes(serverMessage);
             
             
 
@@ -178,13 +178,14 @@ namespace cliente.tcp
 
         public static String[] consultData()
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("C" + " " + user + ".<EOF>");
+            byte[] messsage = Encoding.ASCII.GetBytes("C" + " " + user + ".<EOF>");
 
 
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
-            Int32 count = Int32.Parse(serverMessage);
+            String[] dataCount = serverMessage.Split('.'); 
+            Int32 count = Int32.Parse(dataCount[0]);
 
             String[] strlist = null;
             if (count != 0)
@@ -199,10 +200,12 @@ namespace cliente.tcp
             return strlist;
         }
 
-            public static Boolean save(String nombreDatos , String datos)
+            public static Boolean save(String nombreDatos , byte[] datos)
         {
-            byte[] messsage = Encoding.UTF8.GetBytes("G" + " " + user + " " + nombreDatos + " " + datos + ".<EOF>");
+            String datosString = Convert.ToBase64String(datos);
 
+            byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + datosString + ".<EOF>");
+            Debug.Write(messsage);
             sslStream.Write(messsage);
             sslStream.Flush();
 

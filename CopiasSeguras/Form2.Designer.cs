@@ -437,6 +437,7 @@
             this.Controls.Add(this.botonMenuCifra);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.panelCifrado.ResumeLayout(false);
             this.panelCifrado.PerformLayout();
             this.panelDescarga.ResumeLayout(false);

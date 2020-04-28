@@ -222,7 +222,14 @@ namespace CopiasSeguras
                 panelDesencriptado.Hide();
                 panelSubir.Hide();
                 panelDescarga.Show();
-    
+
+            //peticion de datos
+            String[] listaDatos = SslTcpClient.consultData();
+            foreach (string nombre in listaDatos)
+            {
+                comboBox2.Items.Add(nombre);
+            }
+
         }
 
         private void botonMenuCifra_Click(object sender, EventArgs e)
@@ -255,16 +262,13 @@ namespace CopiasSeguras
 
         private void botonDescargar_Click(object sender, EventArgs e)
         {
-            String[] listaDatos = SslTcpClient.consultData();
-            foreach (string nombre in listaDatos)
-            {
-                comboBox2.Items.Add(nombre);
-            }
+            
             
             if (comboBox2.Text!="")
             {
                 byte[] datos  = SslTcpClient.download(comboBox2.Text);
                 // y guardarlo en un fichero o algo
+
             }
             else
             {
@@ -279,7 +283,8 @@ namespace CopiasSeguras
             {
                 if (nombreFicheroAsubir.Text != "")
                 {
-                    SslTcpClient.save(nombreFicheroAsubir.Text,ArchivoaSubir.Text);
+                    byte[] ArchivoSubir = File.ReadAllBytes(ArchivoaSubir.Text);
+                    SslTcpClient.save(nombreFicheroAsubir.Text, ArchivoSubir);
                 }
                 else
                 {
@@ -299,6 +304,11 @@ namespace CopiasSeguras
             OpenFileDialog ofd = new OpenFileDialog(); //Para archivos
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 ArchivoaSubir.Text = ofd.FileName;
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

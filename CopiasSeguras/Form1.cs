@@ -67,7 +67,7 @@ namespace CopiasSeguras
             SslTcpClient.Start();
             
 
-            if(SslTcpClient.authenticate(usuarioInicio.Text, usuarioInicio.Text))
+            if(SslTcpClient.authenticate(usuarioInicio.Text, pass))
             {
                 Form2 f2 = new Form2();
                 f2.ShowDialog();
