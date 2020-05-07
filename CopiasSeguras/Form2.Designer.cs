@@ -436,7 +436,7 @@
             this.Controls.Add(this.panelCifrado);
             this.Controls.Add(this.botonMenuCifra);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Copias Seguras";
             this.panelCifrado.ResumeLayout(false);
             this.panelCifrado.PerformLayout();
             this.panelDescarga.ResumeLayout(false);
