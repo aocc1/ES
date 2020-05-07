@@ -14,11 +14,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Timers;
 using cliente.tcp;
+
 namespace CopiasSeguras
 {
     public partial class Form2 : Form
     {
-
+        private static string passHash2;
         private static System.Timers.Timer aTimer;
         public static int dateDay;
         public static int dateMonth;
@@ -26,9 +27,11 @@ namespace CopiasSeguras
 
         public static int dateMinute;
 
-        public Form2()
+        public Form2(string passw)
         {
             InitializeComponent();
+
+            passHash2 = passw;
 
             SetTimer();
 
@@ -103,7 +106,7 @@ namespace CopiasSeguras
 
             byte[] ArchivoCifrar = File.ReadAllBytes(newPath);
             AES cifrador = new AES();
-            byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, newPath);
+            byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, newPath, passHash2);
         }
 
         private void SlecArchivoButton_Click(object sender, EventArgs e)
@@ -149,7 +152,7 @@ namespace CopiasSeguras
 
                     byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
 
-                    byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path);
+                    byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path, passHash2);
 
                     Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
                     Console.WriteLine(jsonString);
@@ -182,7 +185,7 @@ namespace CopiasSeguras
 
                     byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
             
-                    byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path);
+                    byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path, passHash2);
 
                     Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
                     Console.WriteLine(jsonString);
