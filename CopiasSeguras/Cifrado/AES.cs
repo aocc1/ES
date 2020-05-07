@@ -20,6 +20,9 @@ namespace CopiasSeguras.Cifrado
 
                 aes.IV = System.Text.Encoding.UTF8.GetBytes("ivProvisional16-");
                 //aes.Key = System.Text.Encoding.UTF8.GetBytes("keyProvisional32----------------");
+                System.Diagnostics.Debug.WriteLine(key.Length);
+                System.Diagnostics.Debug.WriteLine(aes.KeySize);
+                aes.KeySize = 256;
                 aes.Key = System.Text.Encoding.UTF8.GetBytes(key);
 
                 aes.Mode = CipherMode.CBC;
