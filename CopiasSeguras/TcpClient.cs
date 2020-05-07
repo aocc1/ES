@@ -169,8 +169,12 @@ namespace cliente.tcp
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
-            Debug.Write(serverMessage);
-            return Convert.FromBase64String(serverMessage);
+            
+
+            byte[] dat = Encoding.ASCII.GetBytes(serverMessage);
+            string datos = Convert.ToBase64String(dat);
+            Debug.Write(datos);
+            return Convert.FromBase64String(datos);
 
 
 
