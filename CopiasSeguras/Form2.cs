@@ -268,6 +268,7 @@ namespace CopiasSeguras
             {
                 byte[] datos  = SslTcpClient.download(comboBox2.Text);
                 // y guardarlo en un fichero o algo
+               
 
             }
             else

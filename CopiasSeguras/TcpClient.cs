@@ -169,10 +169,10 @@ namespace cliente.tcp
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
-            
-            return Encoding.ASCII.GetBytes(serverMessage);
-            
-            
+            Debug.Write(serverMessage);
+            return Convert.FromBase64String(serverMessage);
+
+
 
         }
 
@@ -193,7 +193,11 @@ namespace cliente.tcp
                 serverMessage = ReadMessage(sslStream);
                 String[] separator = { " " };
                 strlist = serverMessage.Split(separator, count, StringSplitOptions.RemoveEmptyEntries);
-                
+
+                for (int i=0; i<strlist.Length;i++)
+                {
+                    strlist[i] = strlist[i].Replace(".<EOF>","") ;
+                }
 
             }
            
@@ -205,7 +209,7 @@ namespace cliente.tcp
             String datosString = Convert.ToBase64String(datos);
 
             byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + datosString + ".<EOF>");
-            Debug.Write(messsage);
+            Debug.Write(datosString);
             sslStream.Write(messsage);
             sslStream.Flush();
 
