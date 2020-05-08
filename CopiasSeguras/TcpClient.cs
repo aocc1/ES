@@ -58,7 +58,7 @@ namespace cliente.tcp
             // The server name must match the name on the server certificate.
             try
             {
-                //sslStream.AuthenticateAsClient(serverName);
+                sslStream.AuthenticateAsClient(serverName);
             }
             catch (AuthenticationException e)
             {
