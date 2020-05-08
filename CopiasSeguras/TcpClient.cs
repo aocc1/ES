@@ -58,7 +58,7 @@ namespace cliente.tcp
             // The server name must match the name on the server certificate.
             try
             {
-                sslStream.AuthenticateAsClient(serverName);
+                //sslStream.AuthenticateAsClient(serverName);
             }
             catch (AuthenticationException e)
             {
@@ -169,12 +169,9 @@ namespace cliente.tcp
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
-            
+            serverMessage = serverMessage.Replace(".<EOF>", "");
 
-            byte[] dat = Encoding.ASCII.GetBytes(serverMessage);
-            string datos = Convert.ToBase64String(dat);
-            Debug.Write(datos);
-            return Convert.FromBase64String(datos);
+            return Convert.FromBase64String(serverMessage);
 
 
 

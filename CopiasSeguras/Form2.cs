@@ -14,6 +14,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Timers;
 using cliente.tcp;
+using Microsoft.VisualBasic.FileIO;
+
 namespace CopiasSeguras
 {
     public partial class Form2 : Form
@@ -267,8 +269,9 @@ namespace CopiasSeguras
             if (comboBox2.Text!="")
             {
                 byte[] datos  = SslTcpClient.download(comboBox2.Text);
-                // y guardarlo en un fichero o algo
-               
+                File.WriteAllBytes(ArchivoDescargar.Text + "\\" + comboBox2.Text + ".zip", datos);
+
+
 
             }
             else
@@ -284,7 +287,7 @@ namespace CopiasSeguras
             {
                 if (nombreFicheroAsubir.Text != "")
                 {
-                    byte[] ArchivoSubir = File.ReadAllBytes(ArchivoaSubir.Text);
+                    byte[] ArchivoSubir = FileSystem.ReadAllBytes(ArchivoaSubir.Text);
                     SslTcpClient.save(nombreFicheroAsubir.Text, ArchivoSubir);
                 }
                 else
