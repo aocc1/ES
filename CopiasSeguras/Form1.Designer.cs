@@ -227,11 +227,9 @@
 
         private System.Windows.Forms.TextBox usuarioInicio;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox passInicio;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button iniciar;
         private System.Windows.Forms.Button registro;
-        private System.Windows.Forms.Panel panelInicio;
         private System.Windows.Forms.Panel panelRegistro;
         private System.Windows.Forms.Button registrar;
         private System.Windows.Forms.Label label5;
@@ -240,6 +238,8 @@
         private System.Windows.Forms.TextBox nombreRegistro;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panelInicio;
+        private System.Windows.Forms.TextBox passInicio;
     }
 }
 

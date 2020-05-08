@@ -33,12 +33,14 @@ namespace CopiasSeguras
             
             if (Equals(passReg1.Text, passReg2.Text))
             {
-               
+                string passHash = getHash(passReg1.Text);
+                string passHash1 = passHash.Substring(0,passHash.Length/2);
 
                 //registrarse
                 SslTcpClient.Start();
-                if(SslTcpClient.register(nombreRegistro.Text, passReg1.Text))
+                if(SslTcpClient.register(nombreRegistro.Text, passHash1))
                 {
+                    
                     SslTcpClient.conecctionClose();
                     panelRegistro.Hide();
                     panelInicio.Show();
@@ -62,14 +64,18 @@ namespace CopiasSeguras
         {
             this.Hide();
 
-            String pass = passInicio.Text;
+            string passHash = getHash(passInicio.Text);
+            string passHash1 = passHash.Substring(0, passHash.Length / 2);
+            string passHash2 = passHash.Replace(passHash1, "");
+
+            String pass = passHash1;
             String user = usuarioInicio.Text;
             SslTcpClient.Start();
             
 
-            if(SslTcpClient.authenticate(usuarioInicio.Text, pass))
+            if(SslTcpClient.authenticate(usuarioInicio.Text, passHash1))
             {
-                Form2 f2 = new Form2();
+                Form2 f2 = new Form2(passHash2);
                 f2.ShowDialog();
 
 
@@ -84,6 +90,15 @@ namespace CopiasSeguras
 
 
 
+        }
+        private string getHash(string pas)
+        {
+            HashAlgorithm algorithm = SHA256.Create();
+            byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(pas));
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in hash)
+                sb.Append(b.ToString("X2"));
+            return sb.ToString();
         }
     }
 }
