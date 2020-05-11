@@ -289,7 +289,7 @@ namespace CopiasSeguras
             {
                 if (nombreFicheroAsubir.Text != "")
                 {
-                    byte[] ArchivoSubir = FileSystem.ReadAllBytes(ArchivoaSubir.Text);
+                    byte[] ArchivoSubir = File.ReadAllBytes(ArchivoaSubir.Text);
                     SslTcpClient.save(nombreFicheroAsubir.Text, ArchivoSubir);
                 }
                 else
