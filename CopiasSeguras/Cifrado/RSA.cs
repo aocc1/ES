@@ -11,43 +11,52 @@ namespace CopiasSeguras.Cifrado
 {
     class RSA
     {
-        public static Byte[] RSACrypto(String modo, byte[] archivo, String path)
+        //Tamaño de clave RSA
+        static int size = 2048;
+        //1 para RSA, 13 para DSA
+        static int rsa_provider = 1;
+        //Nombre del contenedor de las claves
+        static String containerName = "MiContenedor";
+
+        //Genera las keys en un contenedor seguro
+        public static void generateRSAKeys()
         {
-            using (var rsa = new RSACryptoServiceProvider(2048))
+            CspParameters cspParameters = new CspParameters(rsa_provider);
+            cspParameters.KeyContainerName = containerName;
+            cspParameters.Flags = CspProviderFlags.UseMachineKeyStore;
+            cspParameters.ProviderName = "Microsoft Strong Cryptographic Provider";
+            var rsa = new RSACryptoServiceProvider(cspParameters);
+            rsa.PersistKeyInCsp = true;
+        }
+
+        //Encripta un los datos de un archivo dada su ruta y lo gurada de nuevo en el archivo
+        public static byte[] RSAEncrypt(byte[] archivo, String path)
+        {
+            byte[] dataEncrypted;
+            CspParameters cspParameters = new CspParameters(rsa_provider);
+            cspParameters.KeyContainerName = containerName;
+            using (var rsa = new RSACryptoServiceProvider(size, cspParameters))
             {
-                rsa.PersistKeyInCsp = false;
-                RSAParameters publicKey = rsa.ExportParameters(false);
-                RSAParameters privateKey = rsa.ExportParameters(true);
-
-                using (var memStream = new MemoryStream())
-                {
-                    CryptoStream cryptoStream = null;
-
-                    if (modo == "Encriptar")
-                    {
-                        rsa.ImportParameters(publicKey);
-                        byte[] encrypted = rsa.Encrypt(archivo, true);
-                        //cryptoStream = new CryptoStream(memStream, encrypted, CryptoStreamMode.Write);
-                    }
-                    else if (modo == "Desencriptar")
-                    {
-                        rsa.ImportParameters(privateKey);
-                        byte[] decrypted = rsa.Encrypt(archivo, true);
-                        //cryptoStream = new CryptoStream(memStream, decrypted, CryptoStreamMode.Write);
-                    }
-                    if (cryptoStream == null)
-                    {
-                        return null;
-                    }
-
-                    cryptoStream.Write(archivo, 0, archivo.Length);
-                    cryptoStream.FlushFinalBlock();
-                    File.WriteAllBytes(path, memStream.ToArray());
-                    return memStream.ToArray();
-                }
+                dataEncrypted = rsa.Encrypt(archivo, true);
+                File.WriteAllBytes(path, dataEncrypted);
 
             }
-            //return null;
+            return dataEncrypted;
+        }
+
+        //Desencripta un los datos de un archivo dada su ruta y lo gurada de nuevo en el archivo
+        public static byte[] RSADecrypt(byte[] archivo, String path)
+        {
+            byte[] dataDecrypted;
+            CspParameters cspParameters = new CspParameters();
+            cspParameters.KeyContainerName = containerName;
+            using (var rsa = new RSACryptoServiceProvider(size, cspParameters))
+            {
+                dataDecrypted = rsa.Decrypt(archivo, true);
+                File.WriteAllBytes(path, dataDecrypted);
+
+            }
+            return dataDecrypted;
         }
     }
 }
