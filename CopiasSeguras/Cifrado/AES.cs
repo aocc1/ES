@@ -10,21 +10,15 @@ namespace CopiasSeguras.Cifrado
 {
     class AES
     {
+        //Encripta o desencripta (segun el modo) mediante AES, dados los datos de un archivo, la ruta del mismo, y la clave (hasheada) del usuario
         public static Byte[] AESCrypto(String modo, byte[] archivo, String path, string key) {
 
             using (var aes = new AesCryptoServiceProvider())
             {
-
-                //aes.GenerateIV();
-                //aes.GenerateKey();
-
-                aes.IV = System.Text.Encoding.UTF8.GetBytes("ivProvisional16-");
-                //aes.Key = System.Text.Encoding.UTF8.GetBytes("keyProvisional32----------------");
-                System.Diagnostics.Debug.WriteLine(key.Length);
-                System.Diagnostics.Debug.WriteLine(aes.KeySize);
                 aes.KeySize = 256;
                 aes.Key = System.Text.Encoding.UTF8.GetBytes(key);
-
+                //El vector de inicializacion sera la primera mitad de la clave
+                aes.IV = System.Text.Encoding.UTF8.GetBytes(key.Substring(0, key.Length / 2));     
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
 
@@ -39,14 +33,13 @@ namespace CopiasSeguras.Cifrado
                     if (cryptoStream == null)
                         return null;
 
+                    //Escribimos los datos encriptados en el archivo
                     cryptoStream.Write(archivo, 0, archivo.Length);
                     cryptoStream.FlushFinalBlock();
                     File.WriteAllBytes(path, memStream.ToArray());
                     return memStream.ToArray();
                 }
             }
-            //return null;
         }
-
     }
 }

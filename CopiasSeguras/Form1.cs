@@ -33,7 +33,9 @@ namespace CopiasSeguras
             
             if (Equals(passReg1.Text, passReg2.Text))
             {
+                //Hashea la contraseña del usuario
                 string passHash = getHash(passReg1.Text);
+                //La primera mitad sera la contraseña de usuario
                 string passHash1 = passHash.Substring(0,passHash.Length/2);
 
                 //registrarse
@@ -66,6 +68,7 @@ namespace CopiasSeguras
 
             string passHash = getHash(passInicio.Text);
             string passHash1 = passHash.Substring(0, passHash.Length / 2);
+            //La segunda mitad de la contraseña hasheada sera para cifrar archivos
             string passHash2 = passHash.Replace(passHash1, "");
 
             String pass = passHash1;
@@ -91,8 +94,11 @@ namespace CopiasSeguras
 
 
         }
+
+        //Hashea una contraseña
         private string getHash(string pas)
         {
+            //El algoritmo es SHA256
             HashAlgorithm algorithm = SHA256.Create();
             byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(pas));
             StringBuilder sb = new StringBuilder();
