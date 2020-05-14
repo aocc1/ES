@@ -109,6 +109,7 @@ namespace CopiasSeguras
             String[] split = fecha.Split(' ');
             fecha = split[0] + " " + split[2] + " " + split[3];
 
+            //Cambia el nombre al archivo
             String newPath = @"C:\Backups\" + fecha + ".zip";
             File.Move(path, newPath);
 
@@ -379,9 +380,5 @@ namespace CopiasSeguras
                 ArchivoaSubir.Text = ofd.FileName;
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
