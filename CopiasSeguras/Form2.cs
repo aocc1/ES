@@ -147,16 +147,15 @@ namespace CopiasSeguras
                     byte[] ArchivoCifrar = File.ReadAllBytes(path);
 
                     AES cifrador = new AES();
-
+                    /*
                     string jsonString;
                     jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoCifrar));
 
                     byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
+                    */
                     byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path, passHash2);
 
-                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
-                    Console.WriteLine(jsonString);
+                    
                 }
                 else
                 {
@@ -181,15 +180,15 @@ namespace CopiasSeguras
 
                     AES cifrador = new AES();
 
+                    /*
                     string jsonString;
                     jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
 
                     byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-            
+                    */
                     byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path, passHash2);
 
-                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
-                    Console.WriteLine(jsonString);
+                    
             
                     zip zip = new zip();
                     zip.Descomprimir(path);

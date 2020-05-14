@@ -146,7 +146,7 @@ namespace cliente.tcp
         public static Boolean register(String u, String p)
         {
             byte[] messsage = Encoding.ASCII.GetBytes("R" + " " + u + " " + p + ".<EOF>");
-            Debug.Write(u + " " + p);
+            
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
@@ -207,13 +207,39 @@ namespace cliente.tcp
 
             public static Boolean save(String nombreDatos , byte[] datos)
         {
-            String datosString = Convert.ToBase64String(datos);
-
-            byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + datosString + ".<EOF>");
-            Debug.Write(datosString);
+            byte[] chunk = new byte[67108864];
+            double n = Math.Ceiling((double)datos.Length / chunk.Length);
+            
+            Debug.WriteLine(n);
+            int numBloques = Convert.ToInt32(n);
+            
+            byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + numBloques + ".<EOF>");
             sslStream.Write(messsage);
             sslStream.Flush();
 
+            /*
+
+            int start = 0;
+            for (int i = 0; i < ret.Length; i++)
+            {
+                ret[i] = Arrays.copyOfRange(datos, start, start + chunksize);
+                start += chunksize;
+            }
+            //
+            /*int numBloques = datos. Length;
+            byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + numBloques);
+
+            for (int i=0; i<numBloques; i++)
+            {
+                String datosString = Convert.ToBase64String(datos);
+
+              messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + datosString + ".<EOF>");
+
+                sslStream.Write(messsage);
+                sslStream.Flush();
+            }
+            
+            */
             string serverMessage = ReadMessage(sslStream);
             if (serverMessage == "Operacion exitosa.<EOF>")
             {
