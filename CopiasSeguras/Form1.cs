@@ -40,6 +40,7 @@ namespace CopiasSeguras
 
                 //registrarse
                 SslTcpClient.Start();
+
                 if(SslTcpClient.register(nombreRegistro.Text, passHash1))
                 {
                     
