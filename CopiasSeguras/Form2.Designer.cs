@@ -92,7 +92,7 @@
             this.panelCifrado.Controls.Add(this.EncriptarTitulo);
             this.panelCifrado.Location = new System.Drawing.Point(12, 39);
             this.panelCifrado.Name = "panelCifrado";
-            this.panelCifrado.Size = new System.Drawing.Size(327, 406);
+            this.panelCifrado.Size = new System.Drawing.Size(327, 244);
             this.panelCifrado.TabIndex = 1;
             // 
             // botonEncriptar
@@ -127,9 +127,9 @@
             this.SelccionaArchivo.AutoSize = true;
             this.SelccionaArchivo.Location = new System.Drawing.Point(6, 153);
             this.SelccionaArchivo.Name = "SelccionaArchivo";
-            this.SelccionaArchivo.Size = new System.Drawing.Size(110, 13);
+            this.SelccionaArchivo.Size = new System.Drawing.Size(120, 13);
             this.SelccionaArchivo.TabIndex = 2;
-            this.SelccionaArchivo.Text = "Selecciona la carpeta";
+            this.SelccionaArchivo.Text = "Selecciona una carpeta";
             // 
             // SeleccionaCifrado
             // 
@@ -158,9 +158,9 @@
             this.panelDescarga.Controls.Add(this.comboBox2);
             this.panelDescarga.Controls.Add(this.ArchivoRecuperar);
             this.panelDescarga.Controls.Add(this.RecuperarArchivo);
-            this.panelDescarga.Location = new System.Drawing.Point(673, 39);
+            this.panelDescarga.Location = new System.Drawing.Point(12, 39);
             this.panelDescarga.Name = "panelDescarga";
-            this.panelDescarga.Size = new System.Drawing.Size(320, 406);
+            this.panelDescarga.Size = new System.Drawing.Size(327, 244);
             this.panelDescarga.TabIndex = 4;
             this.panelDescarga.Visible = false;
             // 
@@ -213,9 +213,9 @@
             this.ArchivoRecuperar.AutoSize = true;
             this.ArchivoRecuperar.Location = new System.Drawing.Point(6, 68);
             this.ArchivoRecuperar.Name = "ArchivoRecuperar";
-            this.ArchivoRecuperar.Size = new System.Drawing.Size(110, 13);
+            this.ArchivoRecuperar.Size = new System.Drawing.Size(113, 13);
             this.ArchivoRecuperar.TabIndex = 1;
-            this.ArchivoRecuperar.Text = "Selecciona el Archivo";
+            this.ArchivoRecuperar.Text = "Selecciona un archivo";
             // 
             // RecuperarArchivo
             // 
@@ -228,7 +228,7 @@
             // 
             // botonMenuCifra
             // 
-            this.botonMenuCifra.Location = new System.Drawing.Point(9, 0);
+            this.botonMenuCifra.Location = new System.Drawing.Point(12, 6);
             this.botonMenuCifra.Name = "botonMenuCifra";
             this.botonMenuCifra.Size = new System.Drawing.Size(75, 23);
             this.botonMenuCifra.TabIndex = 2;
@@ -238,7 +238,7 @@
             // 
             // botonMenuDescifra
             // 
-            this.botonMenuDescifra.Location = new System.Drawing.Point(90, 0);
+            this.botonMenuDescifra.Location = new System.Drawing.Point(93, 6);
             this.botonMenuDescifra.Name = "botonMenuDescifra";
             this.botonMenuDescifra.Size = new System.Drawing.Size(75, 23);
             this.botonMenuDescifra.TabIndex = 3;
@@ -248,7 +248,7 @@
             // 
             // botonMenuDescarga
             // 
-            this.botonMenuDescarga.Location = new System.Drawing.Point(171, 0);
+            this.botonMenuDescarga.Location = new System.Drawing.Point(264, 6);
             this.botonMenuDescarga.Name = "botonMenuDescarga";
             this.botonMenuDescarga.Size = new System.Drawing.Size(75, 23);
             this.botonMenuDescarga.TabIndex = 4;
@@ -265,9 +265,9 @@
             this.panelDesencriptado.Controls.Add(this.comboBox3);
             this.panelDesencriptado.Controls.Add(this.label2);
             this.panelDesencriptado.Controls.Add(this.DesencriptarTitulo);
-            this.panelDesencriptado.Location = new System.Drawing.Point(345, 39);
+            this.panelDesencriptado.Location = new System.Drawing.Point(12, 39);
             this.panelDesencriptado.Name = "panelDesencriptado";
-            this.panelDesencriptado.Size = new System.Drawing.Size(322, 406);
+            this.panelDesencriptado.Size = new System.Drawing.Size(327, 244);
             this.panelDesencriptado.TabIndex = 6;
             this.panelDesencriptado.Visible = false;
             // 
@@ -303,9 +303,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 153);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
+            this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Selecciona el archivo";
+            this.label1.Text = "Selecciona un archivo";
             // 
             // comboBox3
             // 
@@ -345,15 +345,15 @@
             this.panelSubir.Controls.Add(this.ArchivoaSubir);
             this.panelSubir.Controls.Add(this.label4);
             this.panelSubir.Controls.Add(this.SubirArchivo);
-            this.panelSubir.Location = new System.Drawing.Point(999, 39);
+            this.panelSubir.Location = new System.Drawing.Point(12, 39);
             this.panelSubir.Name = "panelSubir";
-            this.panelSubir.Size = new System.Drawing.Size(318, 406);
+            this.panelSubir.Size = new System.Drawing.Size(327, 244);
             this.panelSubir.TabIndex = 7;
             this.panelSubir.Visible = false;
             // 
             // nombreFicheroAsubir
             // 
-            this.nombreFicheroAsubir.Location = new System.Drawing.Point(9, 130);
+            this.nombreFicheroAsubir.Location = new System.Drawing.Point(9, 85);
             this.nombreFicheroAsubir.Name = "nombreFicheroAsubir";
             this.nombreFicheroAsubir.Size = new System.Drawing.Size(306, 20);
             this.nombreFicheroAsubir.TabIndex = 7;
@@ -361,11 +361,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 114);
+            this.label3.Location = new System.Drawing.Point(6, 68);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 13);
+            this.label3.Size = new System.Drawing.Size(178, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Introduce un nombre";
+            this.label3.Text = "Introduce un nombre para el archivo";
             // 
             // botonSubir
             // 
@@ -399,9 +399,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 153);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 13);
+            this.label4.Size = new System.Drawing.Size(113, 13);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Selecciona el archivo";
+            this.label4.Text = "Selecciona un archivo";
             // 
             // SubirArchivo
             // 
@@ -414,7 +414,7 @@
             // 
             // botonMenuSubir
             // 
-            this.botonMenuSubir.Location = new System.Drawing.Point(252, 0);
+            this.botonMenuSubir.Location = new System.Drawing.Point(183, 6);
             this.botonMenuSubir.Name = "botonMenuSubir";
             this.botonMenuSubir.Size = new System.Drawing.Size(75, 23);
             this.botonMenuSubir.TabIndex = 8;
@@ -426,15 +426,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1317, 465);
-            this.Controls.Add(this.panelSubir);
-            this.Controls.Add(this.panelDesencriptado);
+            this.ClientSize = new System.Drawing.Size(351, 287);
             this.Controls.Add(this.panelDescarga);
+            this.Controls.Add(this.panelSubir);
             this.Controls.Add(this.botonMenuSubir);
             this.Controls.Add(this.botonMenuDescarga);
             this.Controls.Add(this.botonMenuDescifra);
-            this.Controls.Add(this.panelCifrado);
             this.Controls.Add(this.botonMenuCifra);
+            this.Controls.Add(this.panelDesencriptado);
+            this.Controls.Add(this.panelCifrado);
             this.Name = "Form2";
             this.Text = "Copias Seguras";
             this.panelCifrado.ResumeLayout(false);
