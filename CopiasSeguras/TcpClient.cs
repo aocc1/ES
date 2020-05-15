@@ -207,39 +207,37 @@ namespace cliente.tcp
 
             public static Boolean save(String nombreDatos , byte[] datos)
         {
-            byte[] chunk = new byte[67108864];
+            byte[] chunk = new byte[datos.Length/4];
             double n = Math.Ceiling((double)datos.Length / chunk.Length);
             
-            Debug.WriteLine(n);
+            //Debug.WriteLine(n);
             int numBloques = Convert.ToInt32(n);
             
             byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + numBloques + ".<EOF>");
             sslStream.Write(messsage);
             sslStream.Flush();
-
-            /*
-
             int start = 0;
-            for (int i = 0; i < ret.Length; i++)
+            String datosString;
+            byte[] messsage2;
+            for (int i = 0; i < numBloques; i++)
             {
-                ret[i] = Arrays.copyOfRange(datos, start, start + chunksize);
-                start += chunksize;
-            }
-            //
-            /*int numBloques = datos. Length;
-            byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + numBloques);
+                if (start + chunk.Length > datos.Length) {
+                    Array.Copy(datos, start, chunk, 0, datos.Length - start);
+                }
+                else
+                {
+                    Array.Copy(datos, start, chunk, 0, chunk.Length);
+                    start += chunk.Length;
+                }
 
-            for (int i=0; i<numBloques; i++)
-            {
-                String datosString = Convert.ToBase64String(datos);
+                datosString = Convert.ToBase64String(chunk);
+                messsage2 = Encoding.ASCII.GetBytes(datosString + ".<EOF>");
 
-              messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + datosString + ".<EOF>");
-
-                sslStream.Write(messsage);
+                sslStream.Write(messsage2);
                 sslStream.Flush();
             }
+
             
-            */
             string serverMessage = ReadMessage(sslStream);
             if (serverMessage == "Operacion exitosa.<EOF>")
             {

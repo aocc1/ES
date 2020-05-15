@@ -66,7 +66,7 @@ namespace CopiasSeguras
             int dateYearAct = date.Year;
 
             int dateMinuteAct = date.Minute;
-
+            /*
             if (dateYearAct != dateYear)
             {
                 backup();
@@ -87,6 +87,7 @@ namespace CopiasSeguras
                 backup();
                 dateMinute = dateMinuteAct;
             }
+            */
         }
 
         public static void backup()
