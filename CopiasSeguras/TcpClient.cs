@@ -170,6 +170,7 @@ namespace cliente.tcp
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
+
             String[] dataCount = serverMessage.Split('.'); 
             Int32 count = Int32.Parse(dataCount[0]);
 
