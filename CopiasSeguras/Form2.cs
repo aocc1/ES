@@ -48,15 +48,13 @@ namespace CopiasSeguras
             dateMinute = date.Minute;
 
             Console.ReadLine();
-
-
         }
 
         //Crea el timer
         private static void SetTimer()
         {
-            //Crea un timer con intervalo de 1 segundo
-            timer = new System.Timers.Timer(1000);
+            //Crea un timer con intervalo de 180 segundo
+            timer = new System.Timers.Timer(180000);
             // Conecta el evento para el timer
             timer.Elapsed += OnTimedEvent;
             timer.AutoReset = true;
@@ -76,29 +74,29 @@ namespace CopiasSeguras
             //Si la fecha actual ha cambiado respecto la fecha cuando se logeo el usuario, relizara la copia de seguridad
             if (dateYearAct != dateYear)
             {
-                backup();
+                backup("Y");
                 dateYear = dateYearAct;
             }
             else if (dateMonthAct != dateMonth)
             {
-                backup();
+                backup("M");
                 dateMonth = dateMonthAct;
             }
             else if (dateDayAct != dateDay)
             {
-                backup();
+                backup("D");
                 dateDay = dateDayAct;
             }
             else if (dateMinuteAct != dateMinute)
             {
-                backup();
+                backup("S");
                 dateMinute = dateMinuteAct;
             }
             
         }
 
         //Realiza las copias de seguridad
-        public static void backup()
+        public static void backup(string typeBackup)
         {
             //Comprime el archivo con los datos para la copia de seguridad
             String firstPath = @"C:\Backups\Files";
@@ -111,7 +109,7 @@ namespace CopiasSeguras
             fecha = fecha + " " + DateTime.Now.DayOfWeek + " " + DateTime.Now.Hour + ";" + DateTime.Now.Minute;
             fecha = fecha.Replace('/', '-');
             String[] split = fecha.Split(' ');
-            fecha = split[0] + " " + split[2] + " " + split[3];
+            fecha = typeBackup + "_" + split[0] + "_" + split[2] + "_" + split[3];
 
             //Cambia el nombre al archivo
             String newPath = @"C:\Backups\" + fecha + ".zip";
@@ -121,6 +119,7 @@ namespace CopiasSeguras
             byte[] ArchivoCifrar = File.ReadAllBytes(newPath);
             byte[] encriptado = Cifrado.AES.AESCrypto("Encriptar", ArchivoCifrar, newPath, passHash2);
 
+            //Se sube el backup al servidor
             SslTcpClient.backup(fecha, encriptado);
         }
 
@@ -130,9 +129,6 @@ namespace CopiasSeguras
             //OpenFileDialog ofd = new OpenFileDialog(); //Para archivos
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 ArchivoaCifrar.Text = fbd.SelectedPath;
-
-
-
         }
 
         private void SelecDescButton_Click(object sender, EventArgs e)
@@ -141,7 +137,6 @@ namespace CopiasSeguras
            
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 ArchivoDescargar.Text = fbd.SelectedPath;
-
         }
 
         private void botonEncriptar_Click(object sender, EventArgs e)
@@ -150,8 +145,9 @@ namespace CopiasSeguras
             if(comboBox1.Text == "AES"){
                 if (ArchivoaCifrar.Text != "")
                 {
-                    //Comprime el archivo seleccionado
                     String path = ArchivoaCifrar.Text;
+
+                    //Comprime el archivo seleccionado
                     zip zip = new zip();
                     zip.Comprimir(path);
 
@@ -161,13 +157,9 @@ namespace CopiasSeguras
 
                     path = path + ".zip";
 
-                    byte[] ArchivoCifrar = File.ReadAllBytes(path);
-
-                    AES cifrador = new AES();
-                 
-                    byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path, passHash2);
-
-                    
+                    //Cifra el archivo compimido
+                    byte[] ArchivoCifrar = File.ReadAllBytes(path);                
+                    byte[] encriptado = Cifrado.AES.AESCrypto("Encriptar", ArchivoCifrar, path, passHash2);
                 }
                 else
                 {
@@ -179,7 +171,7 @@ namespace CopiasSeguras
                 if (ArchivoaCifrar.Text != "")
                 {
                     String path = ArchivoaCifrar.Text;
-                    
+
                     zip zip = new zip();
                     zip.Comprimir(path);
 
@@ -189,23 +181,12 @@ namespace CopiasSeguras
                     path = path + ".zip";
 
                     byte[] ArchivoCifrar = File.ReadAllBytes(path);
-
-                    string jsonString;
-                    jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoCifrar));
-
-                    byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
                     byte[] encriptado = Cifrado.RSA.RSAEncrypt(ArchivoCifrar, path);
-
-
-                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
-                    Console.WriteLine(jsonString);
                 }
                 else
                 {
                     MessageBox.Show("Selecciona una carpeta");
                 }
-
             }
             else{
                 MessageBox.Show("Selecciona un tipo de cifrado");
@@ -216,18 +197,14 @@ namespace CopiasSeguras
         {
             //Si el usuario desea desencriptar con AES
             if (comboBox3.Text == "AES"){
-                if (ArchivoaDescifrar.Text != ""){
+                if (ArchivoaDescifrar.Text != "")
+                {
                     String path = ArchivoaDescifrar.Text;
 
+                    //Descifra el archivo comprimido
                     byte[] ArchivoDescifrar = File.ReadAllBytes(path);
+                    byte[] desencriptado = Cifrado.AES.AESCrypto("Desencriptar", ArchivoDescifrar, path, passHash2);
 
-                    AES cifrador = new AES();
-
-               
-                    byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path, passHash2);
-
-                    
-            
                     //Descomprime el fichero
                     zip zip = new zip();
                     zip.Descomprimir(path);
@@ -235,7 +212,6 @@ namespace CopiasSeguras
                     //Borra el archivo encriptado
                     string pathZip = path;
                     File.Delete(pathZip);
-                    //System.Diagnostics.Debug.WriteLine(pathZip);
                 }
                 else
                 {
@@ -249,16 +225,7 @@ namespace CopiasSeguras
                     String path = ArchivoaDescifrar.Text;
 
                     byte[] ArchivoDescifrar = File.ReadAllBytes(path);
-
-                    string jsonString;
-                    jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
-
-                    byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
                     byte[] desencriptado = Cifrado.RSA.RSADecrypt(ArchivoDescifrar, path);
-
-                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
-                    Console.WriteLine(jsonString);
 
                     zip zip = new zip();
                     zip.Descomprimir(path);
@@ -288,10 +255,10 @@ namespace CopiasSeguras
 
         private void botonMenuDescarga_Click(object sender, EventArgs e)
         {
-                panelCifrado.Hide();
-                panelDesencriptado.Hide();
-                panelSubir.Hide();
-                panelDescarga.Show();
+            panelCifrado.Hide();
+            panelDesencriptado.Hide();
+            panelSubir.Hide();
+            panelDescarga.Show();
 
             //peticion de datos
             String[] listaDatos = SslTcpClient.consultData();
@@ -311,14 +278,11 @@ namespace CopiasSeguras
             panelCifrado.Show();
         }
 
- 
-
         private void SlecArchicvoDesc_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 ArchivoaDescifrar.Text = ofd.FileName;
-           
         }
 
         private void botonMenuSubir_Click(object sender, EventArgs e)
@@ -332,15 +296,10 @@ namespace CopiasSeguras
 
         private void botonDescargar_Click(object sender, EventArgs e)
         {
-            
-            
             if (comboBox2.Text!="")
             {
                 byte[] datos  = SslTcpClient.download(comboBox2.Text);
                 File.WriteAllBytes(ArchivoDescargar.Text + "\\" + comboBox2.Text + ".zip", datos);
-
-
-
             }
             else
             {
@@ -362,8 +321,6 @@ namespace CopiasSeguras
                 {
                     MessageBox.Show("Introduce un nombre");
                 }
-
-                
             }
             else
             {
@@ -377,6 +334,5 @@ namespace CopiasSeguras
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 ArchivoaSubir.Text = ofd.FileName;
         }
-
     }
 }
