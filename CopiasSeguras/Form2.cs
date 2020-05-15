@@ -14,6 +14,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Timers;
 using cliente.tcp;
+using Microsoft.VisualBasic.FileIO;
 
 namespace CopiasSeguras
 {
@@ -91,6 +92,7 @@ namespace CopiasSeguras
                 backup();
                 dateMinute = dateMinuteAct;
             }
+            
         }
 
         //Realiza las copias de seguridad
@@ -157,16 +159,11 @@ namespace CopiasSeguras
 
                     byte[] ArchivoCifrar = File.ReadAllBytes(path);
 
-                    string jsonString;
-                    jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoCifrar));
+                    AES cifrador = new AES();
+                 
+                    byte[] encriptado = AES.AESCrypto("Encriptar", ArchivoCifrar, path, passHash2);
 
-                    byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
-
-                    //Encripta el archivo comprimido
-                    byte[] encriptado = Cifrado.AES.AESCrypto("Encriptar", ArchivoCifrar, path, passHash2);
-
-                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(encriptado));
-                    Console.WriteLine(jsonString);
+                    
                 }
                 else
                 {
@@ -220,16 +217,12 @@ namespace CopiasSeguras
 
                     byte[] ArchivoDescifrar = File.ReadAllBytes(path);
 
-                    string jsonString;
-                    jsonString = JsonSerializer.Serialize(Encoding.UTF8.GetString(ArchivoDescifrar));
+                    AES cifrador = new AES();
 
-                    byte[] serilizado = Encoding.UTF8.GetBytes(jsonString);
+               
+                    byte[] desencriptado = AES.AESCrypto("Desencriptar", ArchivoDescifrar, path, passHash2);
+
                     
-                    //Desencripta el fichero comprimido
-                    byte[] desencriptado = Cifrado.AES.AESCrypto("Desencriptar", ArchivoDescifrar, path, passHash2);
-
-                    Console.WriteLine(System.Text.Encoding.UTF8.GetString(desencriptado));
-                    Console.WriteLine(jsonString);
             
                     //Descomprime el fichero
                     zip zip = new zip();
@@ -340,8 +333,9 @@ namespace CopiasSeguras
             if (comboBox2.Text!="")
             {
                 byte[] datos  = SslTcpClient.download(comboBox2.Text);
-                // y guardarlo en un fichero o algo
-               
+                File.WriteAllBytes(ArchivoDescargar.Text + "\\" + comboBox2.Text + ".zip", datos);
+
+
 
             }
             else

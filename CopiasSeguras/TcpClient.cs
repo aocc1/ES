@@ -72,21 +72,6 @@ namespace cliente.tcp
                 return;
             }
 
-            /*
-            // Encode a test message into a byte array.
-            // Signal the end of the message using the "<EOF>".
-            byte[] messsage = Encoding.UTF8.GetBytes(indicative+" "+user + " "+pass+".<EOF>");
-            //byte[] messsage = Encoding.UTF8.GetBytes("Hello from the client.<EOF>");
-            // Send hello message to the server. 
-            sslStream.Write(messsage);
-            sslStream.Flush();
-            // Read message from the server.
-            string serverMessage = ReadMessage(sslStream);
-            Console.WriteLine("Server says: {0}", serverMessage);
-            // Close the client connection.
-            client.Close();
-            Console.WriteLine("Client closed.");
-            */
         }
         static string ReadMessage(SslStream sslStream)
         {
@@ -146,7 +131,7 @@ namespace cliente.tcp
         public static Boolean register(String u, String p)
         {
             byte[] messsage = Encoding.ASCII.GetBytes("R" + " " + u + " " + p + ".<EOF>");
-            Debug.Write(u + " " + p);
+            
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
@@ -169,12 +154,9 @@ namespace cliente.tcp
             sslStream.Write(messsage);
             sslStream.Flush();
             string serverMessage = ReadMessage(sslStream);
-            
+            serverMessage = serverMessage.Replace(".<EOF>", "");
 
-            byte[] dat = Encoding.ASCII.GetBytes(serverMessage);
-            string datos = Convert.ToBase64String(dat);
-            Debug.Write(datos);
-            return Convert.FromBase64String(datos);
+            return Convert.FromBase64String(serverMessage);
 
 
 
@@ -208,12 +190,12 @@ namespace cliente.tcp
             return strlist;
         }
 
-            public static Boolean save(String nombreDatos , byte[] datos)
+        public static Boolean save(String nombreDatos, byte[] datos)
         {
             String datosString = Convert.ToBase64String(datos);
 
             byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + datosString + ".<EOF>");
-            Debug.Write(datosString);
+            
             sslStream.Write(messsage);
             sslStream.Flush();
 
@@ -228,6 +210,52 @@ namespace cliente.tcp
                 return false;
             }
         }
+        /* version por bloques
+            public static Boolean save(String nombreDatos , byte[] datos)
+        {
+            byte[] chunk = new byte[datos.Length/4];
+            double n = Math.Ceiling((double)datos.Length / chunk.Length);
+
+            //Debug.WriteLine(n);
+            int numBloques = Convert.ToInt32(n);
+
+            byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + numBloques + ".<EOF>");
+            sslStream.Write(messsage);
+            sslStream.Flush();
+            int start = 0;
+            String datosString;
+            byte[] messsage2;
+            for (int i = 0; i < numBloques; i++)
+            {
+                if (start + chunk.Length > datos.Length) {
+                    Array.Copy(datos, start, chunk, 0, datos.Length - start);
+                }
+                else
+                {
+                    Array.Copy(datos, start, chunk, 0, chunk.Length);
+                    start += chunk.Length;
+                }
+
+                datosString = Convert.ToBase64String(chunk);
+                messsage2 = Encoding.ASCII.GetBytes(datosString + ".<EOF>");
+
+                sslStream.Write(messsage2);
+                sslStream.Flush();
+            }
+
+
+            string serverMessage = ReadMessage(sslStream);
+            if (serverMessage == "Operacion exitosa.<EOF>")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(serverMessage);
+                return false;
+            }
+        }
+        */
         public static int Start()
         {
             //-A nombre_user contraseña- para autenticar
@@ -239,25 +267,11 @@ namespace cliente.tcp
 
             string serverCertificateName = null;
             string machineName = null;
-           // if (args == null ||args.Length <1 )
-            //{
-               // DisplayUsage();
-            //}
-            // User can specify the machine name and server name.
-            // Server name must match the name on the server's certificate. 
+        
             machineName = "localhost";
             serverCertificateName = machineName;
-            /*
-            machineName = args[0];
-            if (args.Length <2 )
-            {
-                serverCertificateName = machineName;
-            }
-            else 
-            {
-                serverCertificateName = args[1];
-            }
-            */
+       
+            
             SslTcpClient.RunClient (machineName, serverCertificateName);
             return 0;
         }
