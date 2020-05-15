@@ -52,9 +52,6 @@ namespace CopiasSeguras
                 {
                     SslTcpClient.conecctionClose();
                 }
-
-                
-
             }
             else
             {
@@ -76,7 +73,6 @@ namespace CopiasSeguras
             String user = usuarioInicio.Text;
             SslTcpClient.Start();
             
-
             if(SslTcpClient.authenticate(usuarioInicio.Text, passHash1))
             {
                 Form2 f2 = new Form2(passHash2);
@@ -89,11 +85,6 @@ namespace CopiasSeguras
             {
                 SslTcpClient.conecctionClose();
             }
-
-            //Console.WriteLine(System.Text.Encoding.UTF8.GetString(haseo));
-
-
-
         }
 
         //Hashea una contraseña
