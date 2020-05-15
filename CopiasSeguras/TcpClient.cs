@@ -256,7 +256,31 @@ namespace cliente.tcp
             }
         }
         */
-        public static int Start()
+
+        public static void backup(String nombreDatos, byte[] datos)
+        {
+
+            String datosString = Convert.ToBase64String(datos);
+
+            byte[] messsage = Encoding.ASCII.GetBytes("B" + " " + user + " " + nombreDatos + " " + datosString + ".<EOF>");
+
+            sslStream.Write(messsage);
+            sslStream.Flush();
+
+            /*
+            string serverMessage = ReadMessage(sslStream);
+            if (serverMessage == "Operacion exitosa.<EOF>")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(serverMessage);
+                return false;
+            }
+            */
+        }
+            public static int Start()
         {
             //-A nombre_user contraseña- para autenticar
             //-R nombre_user contraseña- para registrar

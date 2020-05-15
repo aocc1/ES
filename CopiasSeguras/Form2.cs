@@ -48,6 +48,8 @@ namespace CopiasSeguras
             dateMinute = date.Minute;
 
             Console.ReadLine();
+
+
         }
 
         //Crea el timer
@@ -118,6 +120,8 @@ namespace CopiasSeguras
             //Encripta el backup
             byte[] ArchivoCifrar = File.ReadAllBytes(newPath);
             byte[] encriptado = Cifrado.AES.AESCrypto("Encriptar", ArchivoCifrar, newPath, passHash2);
+
+            SslTcpClient.backup(fecha, encriptado);
         }
 
         private void SlecArchivoButton_Click(object sender, EventArgs e)

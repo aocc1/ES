@@ -7,16 +7,6 @@ C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.P
 C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.GenerateResource.cache
 C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.exe
 C:\Users\Omar\source\repos\CopiasSeguras\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe.config
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.pdb
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csprojAssemblyReference.cache
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Form1.resources
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Properties.Resources.resources
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.GenerateResource.cache
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.exe
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Form2.resources
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe.config
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.pdb
@@ -27,31 +17,6 @@ C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasS
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.GenerateResource.cache
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.exe
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Buffers.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Json.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Memory.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Encodings.Web.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Json.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.ValueTuple.dll
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Buffers.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Json.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Memory.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Encodings.Web.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Json.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.ValueTuple.xml
-C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.CopyComplete
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
@@ -78,3 +43,37 @@ C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\System.
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\bin\Debug\System.ValueTuple.xml
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.CopyComplete
 C:\Users\Sergio Yáñez Cánovas\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.CoreCompileInputs.cache
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe.config
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.exe
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\CopiasSeguras.pdb
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Buffers.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Json.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Memory.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Json.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.ValueTuple.dll
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Buffers.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Json.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Memory.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Text.Json.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\bin\Debug\System.ValueTuple.xml
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Form1.resources
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Form2.resources
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.Properties.Resources.resources
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.GenerateResource.cache
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.CopyComplete
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.exe
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
