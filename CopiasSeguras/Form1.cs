@@ -51,6 +51,7 @@ namespace CopiasSeguras
                 else
                 {
                     SslTcpClient.conecctionClose();
+                    MessageBox.Show("Ha sucedido un error en el proceso de registro ");
                 }
             }
             else
