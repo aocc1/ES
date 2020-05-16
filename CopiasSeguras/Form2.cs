@@ -70,7 +70,7 @@ namespace CopiasSeguras
             int dateMonthAct = date.Month;
             int dateYearAct = date.Year;
             int dateMinuteAct = date.Minute;
-
+            /*
             //Si la fecha actual ha cambiado respecto la fecha cuando se logeo el usuario, relizara la copia de seguridad
             if (dateYearAct != dateYear)
             {
@@ -92,6 +92,7 @@ namespace CopiasSeguras
                 backup("S");
                 dateMinute = dateMinuteAct;
             }
+            */
             
         }
 
@@ -260,7 +261,7 @@ namespace CopiasSeguras
                 panelDesencriptado.Hide();
                 panelSubir.Hide();
                 panelDescarga.Show();
-            comboBox2.Items.Clear()
+            comboBox2.Items.Clear();
             //peticion de datos
             String[] listaDatos = SslTcpClient.consultData();
             if (listaDatos != null)
