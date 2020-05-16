@@ -205,7 +205,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(9, 84);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.Size = new System.Drawing.Size(306, 21);
             this.comboBox2.TabIndex = 0;
             // 
             // ArchivoRecuperar
@@ -427,14 +427,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 287);
-            this.Controls.Add(this.panelDescarga);
-            this.Controls.Add(this.panelSubir);
             this.Controls.Add(this.botonMenuSubir);
             this.Controls.Add(this.botonMenuDescarga);
             this.Controls.Add(this.botonMenuDescifra);
             this.Controls.Add(this.botonMenuCifra);
-            this.Controls.Add(this.panelDesencriptado);
             this.Controls.Add(this.panelCifrado);
+            this.Controls.Add(this.panelDescarga);
+            this.Controls.Add(this.panelSubir);
+            this.Controls.Add(this.panelDesencriptado);
             this.Name = "Form2";
             this.Text = "Copias Seguras";
             this.panelCifrado.ResumeLayout(false);
