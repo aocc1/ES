@@ -53,8 +53,8 @@ namespace CopiasSeguras
         //Crea el timer
         private static void SetTimer()
         {
-            //Crea un timer con intervalo de 180 segundo
-            timer = new System.Timers.Timer(180000);
+            //Crea un timer con intervalo de 1 segundos
+            timer = new System.Timers.Timer(1000);
             // Conecta el evento para el timer
             timer.Elapsed += OnTimedEvent;
             timer.AutoReset = true;
@@ -70,7 +70,7 @@ namespace CopiasSeguras
             int dateMonthAct = date.Month;
             int dateYearAct = date.Year;
             int dateMinuteAct = date.Minute;
-            /*
+            
             //Si la fecha actual ha cambiado respecto la fecha cuando se logeo el usuario, relizara la copia de seguridad
             if (dateYearAct != dateYear)
             {
@@ -92,8 +92,6 @@ namespace CopiasSeguras
                 backup("S");
                 dateMinute = dateMinuteAct;
             }
-            */
-            
         }
 
         //Realiza las copias de seguridad
@@ -107,7 +105,7 @@ namespace CopiasSeguras
 
             //Genera el nombre del backup
             string fecha = DateTime.Now.Date.ToString();
-            fecha = fecha + " " + DateTime.Now.DayOfWeek + " " + DateTime.Now.Hour + ";" + DateTime.Now.Minute;
+            fecha = fecha + " " + DateTime.Now.DayOfWeek + " " + DateTime.Now.Hour + ";" + DateTime.Now.Minute.ToString("00.##");
             fecha = fecha.Replace('/', '-');
             String[] split = fecha.Split(' ');
             fecha = typeBackup + "_" + split[0] + "_" + split[2] + "_" + split[3];
