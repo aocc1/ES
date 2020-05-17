@@ -159,28 +159,7 @@ namespace cliente.tcp
 
             return Convert.FromBase64String(serverMessage);
 
-/*
-            byte[] messsage = Encoding.ASCII.GetBytes("D" + " " + user + " " + nombreDatos + ".<EOF>");
 
-            sslStream.Write(messsage);
-            sslStream.Flush();
-            
-            string serverMessage = ReadMessage(sslStream);
-            serverMessage = serverMessage.Replace(".<EOF>", "");
-            int numBloques = Convert.ToInt32(serverMessage);
-            string datos = "";
-            for (int i = 0; i < numBloques; i++)
-            {
-                Console.WriteLine("Recibiendo  bloque " + (i + 1) + " de " + numBloques);
-                serverMessage = ReadMessage(sslStream);
-                serverMessage = serverMessage.Replace(".<EOF>", "");
-                datos += serverMessage;
-            }
-
-                return Convert.FromBase64String(datos);
-
-
-            */
         }
 
         public static String[] consultData()
@@ -224,6 +203,7 @@ namespace cliente.tcp
             string serverMessage = ReadMessage(sslStream);
             if (serverMessage == "Operacion exitosa.<EOF>")
             {
+                MessageBox.Show("Subido correctamente");
                 return true;
             }
             else
@@ -233,55 +213,6 @@ namespace cliente.tcp
             }
         }
 
-        /*
-           public static Boolean save(String nombreDatos , byte[] datos)
-       {
-           byte[] chunk = new byte[1048576];
-           double n = Math.Ceiling((double)datos.Length / chunk.Length);
-
-           //Debug.WriteLine(n);
-           int numBloques = Convert.ToInt32(n);
-
-           byte[] messsage = Encoding.ASCII.GetBytes("G" + " " + user + " " + nombreDatos + " " + numBloques + ".<EOF>");
-           sslStream.Write(messsage);
-           sslStream.Flush();
-           int start = 0;
-           String datosString;
-           String h ="";
-           byte[] messsage2;
-           for (int i = 0; i < numBloques; i++)
-           {
-               Console.WriteLine("Enviado bloque " + (i + 1) +" de "+ numBloques);
-               if (start + chunk.Length > datos.Length) {
-                   chunk = new byte[datos.Length - start];
-                   Array.Copy(datos, start, chunk, 0, datos.Length - start);
-               }
-               else
-               {
-                   Array.Copy(datos, start, chunk, 0, chunk.Length);
-                   start += chunk.Length;
-               }
-
-               datosString = Convert.ToBase64String(chunk);
-               messsage2 = Encoding.ASCII.GetBytes(datosString + ".<EOF>");
-                h+= datosString;
-               sslStream.Write(messsage2);
-               sslStream.Flush();
-           }
-
-
-           string serverMessage = ReadMessage(sslStream);
-           if (serverMessage == "Operacion exitosa.<EOF>")
-           {
-               return true;
-           }
-           else
-           {
-               MessageBox.Show(serverMessage);
-               return false;
-           }
-       }
-       */
 
         public static void backup(String nombreDatos, byte[] datos)
        {
@@ -293,10 +224,10 @@ namespace cliente.tcp
            sslStream.Write(messsage);
            sslStream.Flush();
 
-         
-           
+            string serverMessage = ReadMessage(sslStream);
+            
 
-       }
+        }
        
         public static int Start()
         {

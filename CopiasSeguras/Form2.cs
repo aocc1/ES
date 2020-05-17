@@ -27,7 +27,7 @@ namespace CopiasSeguras
         public static int dateYear;
 
         public static int dateMinute;
-
+        public static Boolean servidorLibre = true;
         public Form2(string passw)
         {
             InitializeComponent();
@@ -53,8 +53,8 @@ namespace CopiasSeguras
         //Crea el timer
         private static void SetTimer()
         {
-            //Crea un timer con intervalo de 1 segundos
-            timer = new System.Timers.Timer(1000);
+            //Crea un timer con intervalo de 10 minutos
+            timer = new System.Timers.Timer(600000);
             // Conecta el evento para el timer
             timer.Elapsed += OnTimedEvent;
             timer.AutoReset = true;
@@ -74,22 +74,31 @@ namespace CopiasSeguras
             //Si la fecha actual ha cambiado respecto la fecha cuando se logeo el usuario, relizara la copia de seguridad
             if (dateYearAct != dateYear)
             {
+                servidorLibre = false;
                 backup("Y");
+                servidorLibre = true;
                 dateYear = dateYearAct;
+                
             }
             else if (dateMonthAct != dateMonth)
             {
+                servidorLibre = false;
                 backup("M");
+                servidorLibre = true;
                 dateMonth = dateMonthAct;
             }
             else if (dateDayAct != dateDay)
             {
+                servidorLibre = false;
                 backup("D");
+                servidorLibre = true;
                 dateDay = dateDayAct;
             }
             else if (dateMinuteAct != dateMinute)
             {
+                servidorLibre = false;
                 backup("S");
+                servidorLibre = true;
                 dateMinute = dateMinuteAct;
             }
         }
@@ -255,21 +264,30 @@ namespace CopiasSeguras
 
         private void botonMenuDescarga_Click(object sender, EventArgs e)
         {
+            if (servidorLibre) {
                 panelCifrado.Hide();
                 panelDesencriptado.Hide();
                 panelSubir.Hide();
                 panelDescarga.Show();
-            comboBox2.Items.Clear();
-            //peticion de datos
-            String[] listaDatos = SslTcpClient.consultData();
-            if (listaDatos != null)
-            {
-                foreach (string nombre in listaDatos)
+                comboBox2.Items.Clear();
+                //peticion de datos
+                servidorLibre = false;
+                String[] listaDatos = SslTcpClient.consultData();
+                servidorLibre = true;
+                if (listaDatos != null)
                 {
-                    comboBox2.Items.Add(nombre);
+                    foreach (string nombre in listaDatos)
+                    {
+                        comboBox2.Items.Add(nombre);
+                    }
                 }
+
             }
-            
+            else
+            {
+                MessageBox.Show("Servidor Ocupado , espera a que termine de guardar los cambios");
+            }
+
 
         }
 
@@ -300,35 +318,56 @@ namespace CopiasSeguras
 
         private void botonDescargar_Click(object sender, EventArgs e)
         {
-            if (comboBox2.Text!="")
+            if (servidorLibre)
             {
-                byte[] datos  = SslTcpClient.download(comboBox2.Text);
-                File.WriteAllBytes(ArchivoDescargar.Text + "\\" + comboBox2.Text + ".zip", datos);
+                if (comboBox2.Text != "")
+                {
+                    servidorLibre = false;
+                    byte[] datos = SslTcpClient.download(comboBox2.Text);
+                    servidorLibre = true;
+                    File.WriteAllBytes(ArchivoDescargar.Text + "\\" + comboBox2.Text + ".zip", datos);
+                    MessageBox.Show("Descargado correctamente");
+                }
+                else
+                {
+                    MessageBox.Show("Selecciona un archivo de la lista");
+                }
             }
             else
             {
-                MessageBox.Show("Selecciona un archivo de la lista");
+                MessageBox.Show("Servidor ocupado , espera a que se guarden los cambios");
             }
 
         }
 
         private void botonSubir_Click(object sender, EventArgs e)
         {
-            if (ArchivoaSubir.Text != "")
+            if (servidorLibre)
             {
-                if (nombreFicheroAsubir.Text != "")
+                if (ArchivoaSubir.Text != "")
                 {
-                    byte[] ArchivoSubir = File.ReadAllBytes(ArchivoaSubir.Text);
-                    SslTcpClient.save(nombreFicheroAsubir.Text, ArchivoSubir);
+                    if (nombreFicheroAsubir.Text != "")
+                    {
+                        byte[] ArchivoSubir = File.ReadAllBytes(ArchivoaSubir.Text);
+                        servidorLibre = false;
+                        SslTcpClient.save(nombreFicheroAsubir.Text, ArchivoSubir);
+                       
+                        servidorLibre = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Introduce un nombre");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Introduce un nombre");
+                    MessageBox.Show("Selecciona un fichero");
                 }
+
             }
             else
             {
-                MessageBox.Show("Selecciona un fichero");
+                MessageBox.Show("Servidor ocupado , espera a que se guarden los cambios");
             }
         }
 
