@@ -245,7 +245,8 @@ namespace CopiasSeguras
 
         private void botonMenuDescifra_Click(object sender, EventArgs e)
         {
-            panelCifrado.Hide();
+           
+           panelCifrado.Hide();
             panelDescarga.Hide();
             panelSubir.Hide();
             panelDesencriptado.Show();
@@ -254,18 +255,21 @@ namespace CopiasSeguras
 
         private void botonMenuDescarga_Click(object sender, EventArgs e)
         {
-            panelCifrado.Hide();
-            panelDesencriptado.Hide();
-            panelSubir.Hide();
-            panelDescarga.Show();
+                panelCifrado.Hide();
+                panelDesencriptado.Hide();
+                panelSubir.Hide();
+                panelDescarga.Show();
             comboBox2.Items.Clear();
-
             //peticion de datos
             String[] listaDatos = SslTcpClient.consultData();
-            foreach (string nombre in listaDatos)
+            if (listaDatos != null)
             {
-                comboBox2.Items.Add(nombre);
+                foreach (string nombre in listaDatos)
+                {
+                    comboBox2.Items.Add(nombre);
+                }
             }
+            
 
         }
 
@@ -303,7 +307,7 @@ namespace CopiasSeguras
             }
             else
             {
-                MessageBox.Show("Selecciona un nombre de la lista");
+                MessageBox.Show("Selecciona un archivo de la lista");
             }
 
         }

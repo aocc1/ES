@@ -77,3 +77,4 @@ C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.Gene
 C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csproj.CopyComplete
 C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.exe
 C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.pdb
+C:\Users\omar_\Source\Repos\ES\CopiasSeguras\obj\Debug\CopiasSeguras.csprojAssemblyReference.cache
